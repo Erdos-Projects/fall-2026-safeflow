@@ -216,3 +216,27 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- SafeFlow project-specific ignores ---
+
+# Raw datasets: keep documentation/sample only
+data/raw/*
+!data/raw/README.md
+!data/raw/sample.csv
+
+# Processed/intermediate datasets
+data/processed/*
+data/interim/*
+
+# Logs
+logs/*.log
+
+# OS/editor clutter
+.DS_Store
+Thumbs.db
+
+# Optional: ignore VS Code settings
+.vscode/
+
+# Optional: ignore PyCharm settings
+.idea/
