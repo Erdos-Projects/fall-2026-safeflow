@@ -1,3 +1,20 @@
+# Module downloads 1 month of observations from PeMS stiched into one csv.gz file
+# Returns the path to the output file
+#
+# Running from the terminal example:
+# python load_pems_data.py --year 2018 --month 4 --district 7 --highways [10, 605]
+#
+# Can run python load_pems_data.py --help to see summary of arguments
+# 
+# --year: 4-digit calendar year
+# --month: 1-12
+# --district: 1-12
+# --highways: (optional) list of freeway numbers (int) to include; None includes all
+# --lanes: (optional) include this if individual lane data is to be included
+# --dow: (optional) days of week, options are MTWRFSU (R = Thurs, U = Sun), e.g. --dow SU is weekends; omitting includes all
+# --filedir: (optional) directory to save the file to; default is ../../data/
+
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -273,7 +290,7 @@ def main():
     parser.add_argument("--highways", type=int, nargs="+", default=None, help="Space-separated list of highways to retain, e.g. 10 605; omit to retain all highways")
     parser.add_argument("--lanes", action="store_true", help="Include individual lane columns")
     parser.add_argument("--dow", default=None, help="Days of the week to retain: MTWRFSU; omit for all days")
-    parser.add_argument("--filedir", default="./data/", help="Output directory; default ./data/")
+    parser.add_argument("--filedir", default="../../data/", help="Output directory; default ../../data/")
 
     args = parser.parse_args()
 
