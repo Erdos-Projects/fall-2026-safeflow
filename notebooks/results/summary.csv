@@ -1,0 +1,2 @@
+model,date run,features,AP onsets (mean),AP onsets (std),AP onsets (worst fold),Brier,caught ≥15 min @0.5,false alarms/day @0.5,wrong-alert hours/day @0.5
+boosted_trees,2026-10-29,16,0.7494,0.0109,0.7381,0.0231,0.6251,31.1901,5.3615
