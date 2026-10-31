@@ -89,6 +89,16 @@ SHARED_FEATURES = [
     "jam_distance_change_10",   # jam_distance_down now - 10 minutes ago (negative = a jam is getting closer)
 ]
 
+TRANSFORMER_ADDITIONAL_FEATURES = [
+    "speed", "occupancy", "speed_delta_1", "speed_delta_3",
+    "upstream_speed_delta_1", "upstream_speed_delta_2", "upstream_speed_delta_3",
+    "downstream_speed_delta_1", "downstream_speed_delta_2", "upstream_distance_miles",
+    "slow_last_30", "minutes_since_slow", "speed_lag_30",
+]
+SHARED_FEATURES += TRANSFORMER_ADDITIONAL_FEATURES
+# Importing pre-6am data ONLY for the recent history features; prediction targets and evaluation is kept on the agreed time interval
+HISTORY_INPUT_START_HOUR = 4
+
 KEY = ["station", "timestamp"]
 FIVE_MIN = pd.Timedelta(minutes=5)
 STEPS_AHEAD = WINDOW_MIN // 5
@@ -158,7 +168,7 @@ def _load_readings(data_dir: Path, verbose: bool, extra_columns=()):
     holidays = set(USFederalHolidayCalendar().holidays("2015-01-01", "2035-12-31").date)
     holdout_start = pd.Timestamp(HOLDOUT_START).date()
 
-    mainline_parts, ramp_parts = [], []
+    mainline_parts, ramp_parts, history_parts = [], [], []
     days_used, skipped = 0, 0
     start = time.time()
     for i, path in enumerate(files, 1):
@@ -169,6 +179,11 @@ def _load_readings(data_dir: Path, verbose: bool, extra_columns=()):
         if day.weekday() >= 5 or day in holidays:
             continue
         readings = pd.read_parquet(path, columns=columns)
+
+        # Add the pre-6am readings strictly for feature construction
+        history_hours = readings["timestamp"].dt.hour.between(HISTORY_INPUT_START_HOUR, HOUR_END)
+        history_parts.append(readings.loc[history_hours & readings["lane_type"].eq("ML"), ["station", "timestamp", "speed"]])
+
         readings = readings[readings["timestamp"].dt.hour.between(HOUR_START, HOUR_END)]
         is_ramp = readings["lane_type"].isin(["OR", "FR"]) | readings["station"].isin(CONNECTOR_ROLES)
         mainline_parts.append(readings[readings["lane_type"] == "ML"].drop(columns="lane_type"))
@@ -188,7 +203,13 @@ def _load_readings(data_dir: Path, verbose: bool, extra_columns=()):
     assert mainline["timestamp"].max() < pd.Timestamp(HOLDOUT_START), "holdout data was loaded"
     if verbose:
         print(f"{days_used} weekdays used out of {len(files)} files ({skipped} holdout files skipped, never read)")
-    return mainline, ramps
+
+    history_readings = pd.concat(history_parts, ignore_index=True)
+    history_readings["speed"] = history_readings["speed"].astype("float32")
+
+    assert history_readings["timestamp"].max() < pd.Timestamp(HOLDOUT_START)
+
+    return mainline, ramps, history_readings
 
 
 def _stations_and_ramps(meta_file: Path, mainline: pd.DataFrame):
@@ -238,7 +259,7 @@ def build_dataset(data_dir=None, verbose=True, extra_columns=None) -> pd.DataFra
     if not meta_file.exists():
         raise FileNotFoundError(f"Station metadata not found: {meta_file.resolve()}. Put {META_FILE_NAME} in {data_dir}.")
     extra_columns = list(EXTRA_COLUMNS if extra_columns is None else extra_columns)
-    mainline, ramp_readings = _load_readings(data_dir, verbose, extra_columns)
+    mainline, ramp_readings, history_readings = _load_readings(data_dir, verbose, extra_columns) # Note: added history_readings here for the pre-6am data; not passed to prediction targets
     stations, nearest_ramps = _stations_and_ramps(meta_file, mainline)
 
     df = mainline[KEY + ["speed", "occupancy", "flow", "real"] + extra_columns].sort_values(KEY).reset_index(drop=True)
@@ -297,6 +318,11 @@ def build_dataset(data_dir=None, verbose=True, extra_columns=None) -> pd.DataFra
 
     # Team features registered with @feature
     context = SimpleNamespace(stations=stations, nearest_ramps=nearest_ramps, ramp_readings=ramp_readings)
+
+    # Appends the transformer features + blocks pre-6am history from bleeding into actual prediction
+    _add_transformer_features(df, context, history_readings)
+    del history_readings
+    
     for name, function in STATIC_FEATURES.items():
         df[name] = _as_column(function(df, context))
         if verbose:
@@ -597,3 +623,68 @@ def score(val, probability, threshold=ALERT_THRESHOLD):
 # @training_feature("flow_anomaly")
 # def flow_anomaly(df, train_mask):
 #     return df["flow"] - typical_value(df, "flow", train_mask)
+
+
+# This returns the recent history features: slow count, capped recency, 30min lag
+def recent_history_features(readings, target_keys):
+    readings = readings[KEY + ["speed"]].copy()
+    repeated = readings[readings.duplicated(KEY, keep=False)]
+
+    if len(repeated):
+        conflicts = repeated.groupby(KEY)["speed"].nunique(dropna=False).gt(1)
+        bad_keys = conflicts.index[conflicts]
+        bad = pd.MultiIndex.from_frame(readings[KEY]).isin(bad_keys)
+        readings.loc[bad, "speed"] = np.nan
+
+    readings = readings.drop_duplicates(KEY)
+    names = ["slow_last_30", "minutes_since_slow", "speed_lag_30"]
+    result = pd.DataFrame(np.nan, index=target_keys.index, columns=names, dtype="float32")
+
+    groups = {sid: part.set_index("timestamp")["speed"].sort_index() for sid, part in readings.groupby("station", sort=False)}
+
+    for sid, positions in target_keys.groupby("station", sort=False).indices.items():
+        if sid not in groups:
+            continue
+
+        observed = groups[sid]
+        grid = pd.date_range(observed.index.min(), observed.index.max(), freq="5min")
+        speed = observed.reindex(grid)
+        slow = speed.lt(SLOW_MPH)
+
+        recent_count = slow.astype(float).where(speed.notna()).rolling(6, min_periods=6).sum()
+
+        last_slow = pd.Series(grid.where(slow), index=grid).ffill()
+        last_missing = pd.Series(grid.where(speed.isna()), index=grid).ffill()
+        elapsed = (pd.Series(grid, index=grid) - last_slow).dt.total_seconds() / 60
+        uninterrupted = last_missing.isna() | last_slow.gt(last_missing)
+        known_recent = elapsed.between(0, 120) & uninterrupted
+        full_history = speed.notna().rolling(25, min_periods=25).sum().eq(25)
+
+        # With missing data no observation of slowdown doesn't imply congestion-less period
+        recency = pd.Series(np.nan, index=grid).mask(full_history, 120.0).mask(known_recent, elapsed)
+        values = pd.DataFrame({"slow_last_30": recent_count, "minutes_since_slow": recency, "speed_lag_30": speed.shift(6)})
+        wanted = target_keys["timestamp"].iloc[positions]
+        result.iloc[positions] = values.reindex(wanted)[names].to_numpy(dtype="float32")
+
+    return result
+
+
+def _add_transformer_features(df, context, history_readings):
+    for lag in (1, 3):
+        df[f"speed_delta_{lag}"] = (df["speed"] - same_station_at(df, "speed", -5 * lag)).astype("float32")
+
+    for side, lags in (("upstream", (1, 2, 3)), ("downstream", (1, 2))):
+        column = f"{side}_speed"
+        for lag in lags:
+            df[f"{side}_speed_delta_{lag}"] = (df[column] - same_station_at(df, column, -5 * lag)).astype("float32")
+
+    stations = context.stations.set_index("ID")
+    upstream_pm = stations["upstream_id"].map(stations["Abs_PM"])
+    distances = (stations["Abs_PM"] - upstream_pm).abs()
+
+    df["upstream_distance_miles"] = df["station"].map(distances).astype("float32")
+
+    recent = recent_history_features(history_readings, df[KEY])
+
+    for column in recent:
+        df[column] = recent[column].to_numpy()
