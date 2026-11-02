@@ -1,0 +1,3 @@
+# Large local artifacts; commit the notebooks and notebooks/results comparison files.
+results/
+cache/
