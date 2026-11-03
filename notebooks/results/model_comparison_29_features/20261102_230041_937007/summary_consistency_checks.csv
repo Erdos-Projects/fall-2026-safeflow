@@ -1,0 +1,22 @@
+model,metric,from_fold_csv,from_summary
+Boosted trees,AP onsets (mean),0.7662666666666667,0.7663
+Boosted trees,AP onsets (std),0.010835620271431937,0.0108
+Boosted trees,AP onsets (worst fold),0.755,0.755
+Boosted trees,Brier,0.021966666666666666,0.022
+Boosted trees,caught ≥15 min @0.5,0.6409666666666666,0.641
+Boosted trees,false alarms/day @0.5,31.123933333333337,31.1239
+Boosted trees,wrong-alert hours/day @0.5,5.0379499999999995,5.0379
+Transformer,AP onsets (mean),0.7624666666666666,0.7625
+Transformer,AP onsets (std),0.01674522817601081,0.0168
+Transformer,AP onsets (worst fold),0.7317,0.7317
+Transformer,Brier,0.022283333333333332,0.0223
+Transformer,caught ≥15 min @0.5,0.6632833333333333,0.6633
+Transformer,false alarms/day @0.5,30.431733333333337,30.4317
+Transformer,wrong-alert hours/day @0.5,5.5437,5.5437
+Random Forest,AP onsets (mean),0.7494333333333333,0.7495
+Random Forest,AP onsets (std),0.00878582191184564,0.0088
+Random Forest,AP onsets (worst fold),0.7384,0.7384
+Random Forest,Brier,0.023000000000000003,0.023
+Random Forest,caught ≥15 min @0.5,0.5257666666666666,0.5258
+Random Forest,false alarms/day @0.5,30.048333333333336,30.0483
+Random Forest,wrong-alert hours/day @0.5,4.461883333333334,4.4619

@@ -1,3 +1,10 @@
-# Large local artifacts; commit the notebooks and notebooks/results comparison files.
-results/
+# Keep caches and most run artifacts local.
 cache/
+results/**
+
+# Publish only full-run predictions and their manifest.
+!results/
+!results/*_full_*/
+!results/*_full_*/20??-??/
+!results/*_full_*/20??-??/validation_predictions.parquet
+!results/*_full_*/manifest.json

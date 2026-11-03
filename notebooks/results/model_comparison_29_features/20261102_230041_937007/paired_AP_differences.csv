@@ -1,0 +1,19 @@
+fold,first,second,AP_difference
+2024-01 to 2024-03,Boosted trees,Transformer,0.030100000000000016
+2024-04 to 2024-06,Boosted trees,Transformer,0.01319999999999999
+2024-07 to 2024-09,Boosted trees,Transformer,-0.0043999999999999595
+2024-10 to 2024-12,Boosted trees,Transformer,-0.006599999999999939
+2025-01 to 2025-03,Boosted trees,Transformer,-0.0041999999999999815
+2025-04 to 2025-06,Boosted trees,Transformer,-0.005299999999999971
+2024-01 to 2024-03,Boosted trees,Random Forest,0.016000000000000014
+2024-04 to 2024-06,Boosted trees,Random Forest,0.02290000000000003
+2024-07 to 2024-09,Boosted trees,Random Forest,0.014100000000000001
+2024-10 to 2024-12,Boosted trees,Random Forest,0.01429999999999998
+2025-01 to 2025-03,Boosted trees,Random Forest,0.01660000000000006
+2025-04 to 2025-06,Boosted trees,Random Forest,0.017100000000000004
+2024-01 to 2024-03,Transformer,Random Forest,-0.014100000000000001
+2024-04 to 2024-06,Transformer,Random Forest,0.009700000000000042
+2024-07 to 2024-09,Transformer,Random Forest,0.01849999999999996
+2024-10 to 2024-12,Transformer,Random Forest,0.02089999999999992
+2025-01 to 2025-03,Transformer,Random Forest,0.02080000000000004
+2025-04 to 2025-06,Transformer,Random Forest,0.022399999999999975

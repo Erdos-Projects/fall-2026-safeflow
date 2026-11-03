@@ -1,0 +1,33 @@
+{
+  "models": {
+    "Boosted trees": "boosted_trees",
+    "Transformer": "transformer_shared_plus_agreed_features",
+    "Random Forest": "random_forest_shared_29_features"
+  },
+  "features_reported": 29,
+  "folds": [
+    "2024-01 to 2024-03",
+    "2024-04 to 2024-06",
+    "2024-07 to 2024-09",
+    "2024-10 to 2024-12",
+    "2025-01 to 2025-03",
+    "2025-04 to 2025-06"
+  ],
+  "source_sha256": {
+    "summary.csv": "e25785afc3da9de4d9805170ab46efd065f55bb31af1b35ad0cf5b1528eef730",
+    "boosted_trees_folds.csv": "1fb51c9ff3213b10c80f9c42204f2cae8588940cf15430b19ad92aad2e818eb5",
+    "transformer_shared_plus_agreed_features_folds.csv": "0ca39890f0070658ceb44c6c7d135af798b950fb69a4f83bef57be67baefff32",
+    "random_forest_shared_29_features_folds.csv": "9bf726efb9020a21a1658cb274df7f7d8a1f60b467f9c97dd6bfc73f4c8b1678"
+  },
+  "shared_module_sha256": "09fee9268cfabcd7a9db64a86a7759f082eac6a14e2c51b2d85578ab982803fd",
+  "summary_rounding_tolerance": 0.0001,
+  "onset_counts_match": true,
+  "transformer_RF_training_counts_match": true,
+  "raw_predictions_available": {
+    "Boosted trees": false,
+    "Transformer": false,
+    "Random Forest": true
+  },
+  "comparison": "saved development-fold metrics; no independent retraining or holdout scoring",
+  "warning_threshold": 0.5
+}

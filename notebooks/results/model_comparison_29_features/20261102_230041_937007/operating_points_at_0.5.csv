@@ -1,0 +1,4 @@
+,caught_percent,false_episodes_per_day,wrong_alert_hours_per_day
+Boosted trees,64.1,31.1239,5.0379
+Transformer,66.33,30.4317,5.5437
+Random Forest,52.580000000000005,30.0483,4.4619
