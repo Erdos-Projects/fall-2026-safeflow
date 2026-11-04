@@ -1,0 +1,48 @@
+{
+  "updated_at": "2026-11-04 13:01 EST",
+  "holdout_used": false,
+  "local_benchmark_status": "in progress",
+  "sources": [
+    {
+      "path": "notebooks/results/summary.csv",
+      "sha256": "5e598cd01c844e8afe0f99d52e7ccf1b5a23bfba4cf96f4b301db84b914760e5"
+    },
+    {
+      "path": "notebooks/results/boosted_trees_folds.csv",
+      "sha256": "b6b5f5ed07806164942e241c2456b548c63c7310053b5abdeef3574e0efc640f"
+    },
+    {
+      "path": "notebooks/results/transformer_shared_plus_agreed_features_folds.csv",
+      "sha256": "0ca39890f0070658ceb44c6c7d135af798b950fb69a4f83bef57be67baefff32"
+    },
+    {
+      "path": "notebooks/results/random_forest_shared_29_features_folds.csv",
+      "sha256": "9bf726efb9020a21a1658cb274df7f7d8a1f60b467f9c97dd6bfc73f4c8b1678"
+    },
+    {
+      "path": "results/forward_warning_budget_validation/20261104_102956_926783/forward_detection_and_burden.png",
+      "sha256": "4270c5669e7ee55801ae1f8a1071b980b5c6249b8cc0afa3642690f488d900ea"
+    },
+    {
+      "path": "results/model_decision_analysis/20261104_104058_694019/paired_intervals.csv",
+      "sha256": "1960ebcd012ebc87767c1f9bae741457cdc382af957c9709efa0c3ad173e4c16"
+    },
+    {
+      "path": "results/forward_warning_budget_validation/20261104_102956_926783/recurrence_summary.csv",
+      "sha256": "3b96814da1283c7be0cc1636bd84f3c7b0b2f48db68cf53b610d45e0d71af1d5"
+    },
+    {
+      "path": "results/local_model_benchmark/20261104_115016_080613/partial_completed_models_snapshot.csv",
+      "sha256": "0c60b17324f2e80db72e1f27c743d25097e963c36f10679ce640c0263e79d33a"
+    }
+  ],
+  "figures": {
+    "published_ranking.png": "Current published summary and per-fold CSVs; includes Nov 4 boosted trees",
+    "forward_warning_budget.png": "Copied unchanged from completed forward validation",
+    "paired_uncertainty.png": "Primary duration-policy weekly paired intervals",
+    "recurrence.png": "Forward duration-policy group detection; unknown recurrence excluded from groups",
+    "local_benchmark_partial.png": "Two completed local model benchmarks only"
+  },
+  "page_updated_at": "2026-11-04 13:03 EST",
+  "transformer_completed_epochs": 4
+}

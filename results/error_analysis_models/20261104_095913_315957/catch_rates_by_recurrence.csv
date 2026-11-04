@@ -1,0 +1,33 @@
+budget_type,group,model,onsets,caught_15min
+episodes,non-recurrent,Timetable,1308,0.0
+episodes,non-recurrent,Random Forest,1308,0.0
+episodes,non-recurrent,Transformer,1308,0.03669724770642202
+episodes,non-recurrent,Boosted trees (29),1308,0.016055045871559634
+episodes,occasional,Timetable,2072,0.017857142857142856
+episodes,occasional,Random Forest,2072,0.017857142857142856
+episodes,occasional,Transformer,2072,0.22055984555984556
+episodes,occasional,Boosted trees (29),2072,0.14623552123552125
+episodes,recurrent,Timetable,5873,0.9054997445939043
+episodes,recurrent,Random Forest,5873,0.4120551677166695
+episodes,recurrent,Transformer,5873,0.7100289460241784
+episodes,recurrent,Boosted trees (29),5873,0.6761450706623532
+episodes,all classified,Timetable,9253,0.578731222306279
+episodes,all classified,Random Forest,9253,0.26553550199935155
+episodes,all classified,Transformer,9253,0.5052415432832594
+episodes,all classified,Boosted trees (29),9253,0.46417378147627797
+duration,non-recurrent,Timetable,1308,0.0
+duration,non-recurrent,Random Forest,1308,0.017584097859327217
+duration,non-recurrent,Transformer,1308,0.06116207951070336
+duration,non-recurrent,Boosted trees (29),1308,0.0389908256880734
+duration,occasional,Timetable,2072,0.0
+duration,occasional,Random Forest,2072,0.13754826254826255
+duration,occasional,Transformer,2072,0.30984555984555984
+duration,occasional,Boosted trees (29),2072,0.26206563706563707
+duration,recurrent,Timetable,5873,0.5319257619615189
+duration,recurrent,Random Forest,5873,0.71139111186787
+duration,recurrent,Transformer,5873,0.7929507917588966
+duration,recurrent,Boosted trees (29),5873,0.8035075770475055
+duration,all classified,Timetable,9253,0.33762023127634283
+duration,all classified,Random Forest,9253,0.4848157354371555
+duration,all classified,Transformer,9253,0.5813249756835621
+duration,all classified,Boosted trees (29),9253,0.5741921538960337

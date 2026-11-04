@@ -1,0 +1,21 @@
+{
+  "notebooks/01_pems_bay_eda.ipynb": "notebooks/eda/01_pems_bay_eda.ipynb",
+  "notebooks/02_eda_pems_framework.ipynb": "notebooks/eda/02_eda_pems_framework.ipynb",
+  "notebooks/02_raw_pems_eda_initial.ipynb": "notebooks/eda/02_raw_pems_eda_initial.ipynb",
+  "notebooks/congestion-at-specific-sensor.ipynb": "notebooks/eda/congestion-at-specific-sensor.ipynb",
+  "notebooks/congestion-start-feature-engineering.ipynb": "notebooks/eda/congestion-start-feature-engineering.ipynb",
+  "notebooks/data_and_features.ipynb": "notebooks/eda/data_and_features.ipynb",
+  "notebooks/compare_models_29_features.ipynb": "notebooks/analysis/compare_models_29_features.ipynb",
+  "notebooks/error_analysis_models.ipynb": "notebooks/analysis/error_analysis_models.ipynb",
+  "notebooks/random_forest_results.ipynb": "notebooks/analysis/random_forest_results.ipynb",
+  "notebooks/feature_selection_results.ipynb": "notebooks/analysis/feature_selection_results.ipynb",
+  "notebooks/03_congestion_onset_analysis.ipynb": "notebooks/archive/03_congestion_onset_analysis.ipynb",
+  "notebooks/03_simple_timeseries_baseline.ipynb": "notebooks/archive/03_simple_timeseries_baseline.ipynb",
+  "notebooks/04_congestion_horizon_comparison.ipynb": "notebooks/archive/04_congestion_horizon_comparison.ipynb",
+  "notebooks/05_speed_difference_comparison.ipynb": "notebooks/archive/05_speed_difference_comparison.ipynb",
+  "notebooks/boosted_trees_model.ipynb": "notebooks/archive/boosted_trees_model.ipynb",
+  "notebooks/feature-selection-individual-features-modified-earlier.ipynb": "notebooks/archive/feature-selection-individual-features-modified-earlier.ipynb",
+  "notebooks/feature_selection.ipynb": "notebooks/archive/feature_selection.ipynb",
+  "notebooks/congestion_comparison.ipynb": "notebooks/archive/congestion_comparison.ipynb",
+  "error_analysis.ipynb": "notebooks/archive/error_analysis.ipynb"
+}

@@ -1,0 +1,161 @@
+model,fold,budget_type,group,onsets,caught
+Timetable,2024-04 to 2024-06,episodes,non-recurrent,176,0
+Timetable,2024-04 to 2024-06,episodes,occasional,291,1
+Timetable,2024-04 to 2024-06,episodes,recurrent,977,679
+Timetable,2024-04 to 2024-06,episodes,unknown,9,0
+Timetable,2024-04 to 2024-06,duration,non-recurrent,176,0
+Timetable,2024-04 to 2024-06,duration,occasional,291,0
+Timetable,2024-04 to 2024-06,duration,recurrent,977,369
+Timetable,2024-04 to 2024-06,duration,unknown,9,0
+Timetable,2024-07 to 2024-09,episodes,non-recurrent,224,0
+Timetable,2024-07 to 2024-09,episodes,occasional,321,0
+Timetable,2024-07 to 2024-09,episodes,recurrent,937,678
+Timetable,2024-07 to 2024-09,episodes,unknown,9,0
+Timetable,2024-07 to 2024-09,duration,non-recurrent,224,0
+Timetable,2024-07 to 2024-09,duration,occasional,321,0
+Timetable,2024-07 to 2024-09,duration,recurrent,937,434
+Timetable,2024-07 to 2024-09,duration,unknown,9,0
+Timetable,2024-10 to 2024-12,episodes,non-recurrent,202,0
+Timetable,2024-10 to 2024-12,episodes,occasional,408,0
+Timetable,2024-10 to 2024-12,episodes,recurrent,931,705
+Timetable,2024-10 to 2024-12,episodes,unknown,5,0
+Timetable,2024-10 to 2024-12,duration,non-recurrent,202,0
+Timetable,2024-10 to 2024-12,duration,occasional,408,0
+Timetable,2024-10 to 2024-12,duration,recurrent,931,436
+Timetable,2024-10 to 2024-12,duration,unknown,5,0
+Timetable,2025-01 to 2025-03,episodes,non-recurrent,287,0
+Timetable,2025-01 to 2025-03,episodes,occasional,369,2
+Timetable,2025-01 to 2025-03,episodes,recurrent,901,770
+Timetable,2025-01 to 2025-03,episodes,unknown,4,0
+Timetable,2025-01 to 2025-03,duration,non-recurrent,287,0
+Timetable,2025-01 to 2025-03,duration,occasional,369,0
+Timetable,2025-01 to 2025-03,duration,recurrent,901,440
+Timetable,2025-01 to 2025-03,duration,unknown,4,0
+Timetable,2025-04 to 2025-06,episodes,non-recurrent,247,0
+Timetable,2025-04 to 2025-06,episodes,occasional,370,2
+Timetable,2025-04 to 2025-06,episodes,recurrent,913,817
+Timetable,2025-04 to 2025-06,episodes,unknown,6,0
+Timetable,2025-04 to 2025-06,duration,non-recurrent,247,0
+Timetable,2025-04 to 2025-06,duration,occasional,370,0
+Timetable,2025-04 to 2025-06,duration,recurrent,913,398
+Timetable,2025-04 to 2025-06,duration,unknown,6,0
+Random Forest,2024-04 to 2024-06,episodes,non-recurrent,176,0
+Random Forest,2024-04 to 2024-06,episodes,occasional,291,0
+Random Forest,2024-04 to 2024-06,episodes,recurrent,977,267
+Random Forest,2024-04 to 2024-06,episodes,unknown,9,0
+Random Forest,2024-04 to 2024-06,duration,non-recurrent,176,0
+Random Forest,2024-04 to 2024-06,duration,occasional,291,24
+Random Forest,2024-04 to 2024-06,duration,recurrent,977,555
+Random Forest,2024-04 to 2024-06,duration,unknown,9,0
+Random Forest,2024-07 to 2024-09,episodes,non-recurrent,224,0
+Random Forest,2024-07 to 2024-09,episodes,occasional,321,3
+Random Forest,2024-07 to 2024-09,episodes,recurrent,937,295
+Random Forest,2024-07 to 2024-09,episodes,unknown,9,0
+Random Forest,2024-07 to 2024-09,duration,non-recurrent,224,1
+Random Forest,2024-07 to 2024-09,duration,occasional,321,23
+Random Forest,2024-07 to 2024-09,duration,recurrent,937,603
+Random Forest,2024-07 to 2024-09,duration,unknown,9,0
+Random Forest,2024-10 to 2024-12,episodes,non-recurrent,202,0
+Random Forest,2024-10 to 2024-12,episodes,occasional,408,5
+Random Forest,2024-10 to 2024-12,episodes,recurrent,931,381
+Random Forest,2024-10 to 2024-12,episodes,unknown,5,0
+Random Forest,2024-10 to 2024-12,duration,non-recurrent,202,3
+Random Forest,2024-10 to 2024-12,duration,occasional,408,50
+Random Forest,2024-10 to 2024-12,duration,recurrent,931,653
+Random Forest,2024-10 to 2024-12,duration,unknown,5,1
+Random Forest,2025-01 to 2025-03,episodes,non-recurrent,287,0
+Random Forest,2025-01 to 2025-03,episodes,occasional,369,10
+Random Forest,2025-01 to 2025-03,episodes,recurrent,901,388
+Random Forest,2025-01 to 2025-03,episodes,unknown,4,0
+Random Forest,2025-01 to 2025-03,duration,non-recurrent,287,9
+Random Forest,2025-01 to 2025-03,duration,occasional,369,44
+Random Forest,2025-01 to 2025-03,duration,recurrent,901,657
+Random Forest,2025-01 to 2025-03,duration,unknown,4,0
+Random Forest,2025-04 to 2025-06,episodes,non-recurrent,247,0
+Random Forest,2025-04 to 2025-06,episodes,occasional,370,6
+Random Forest,2025-04 to 2025-06,episodes,recurrent,913,388
+Random Forest,2025-04 to 2025-06,episodes,unknown,6,0
+Random Forest,2025-04 to 2025-06,duration,non-recurrent,247,1
+Random Forest,2025-04 to 2025-06,duration,occasional,370,48
+Random Forest,2025-04 to 2025-06,duration,recurrent,913,632
+Random Forest,2025-04 to 2025-06,duration,unknown,6,0
+Transformer,2024-04 to 2024-06,episodes,non-recurrent,176,3
+Transformer,2024-04 to 2024-06,episodes,occasional,291,31
+Transformer,2024-04 to 2024-06,episodes,recurrent,977,556
+Transformer,2024-04 to 2024-06,episodes,unknown,9,0
+Transformer,2024-04 to 2024-06,duration,non-recurrent,176,4
+Transformer,2024-04 to 2024-06,duration,occasional,291,42
+Transformer,2024-04 to 2024-06,duration,recurrent,977,634
+Transformer,2024-04 to 2024-06,duration,unknown,9,0
+Transformer,2024-07 to 2024-09,episodes,non-recurrent,224,1
+Transformer,2024-07 to 2024-09,episodes,occasional,321,46
+Transformer,2024-07 to 2024-09,episodes,recurrent,937,647
+Transformer,2024-07 to 2024-09,episodes,unknown,9,0
+Transformer,2024-07 to 2024-09,duration,non-recurrent,224,4
+Transformer,2024-07 to 2024-09,duration,occasional,321,70
+Transformer,2024-07 to 2024-09,duration,recurrent,937,715
+Transformer,2024-07 to 2024-09,duration,unknown,9,0
+Transformer,2024-10 to 2024-12,episodes,non-recurrent,202,7
+Transformer,2024-10 to 2024-12,episodes,occasional,408,85
+Transformer,2024-10 to 2024-12,episodes,recurrent,931,633
+Transformer,2024-10 to 2024-12,episodes,unknown,5,0
+Transformer,2024-10 to 2024-12,duration,non-recurrent,202,11
+Transformer,2024-10 to 2024-12,duration,occasional,408,116
+Transformer,2024-10 to 2024-12,duration,recurrent,931,704
+Transformer,2024-10 to 2024-12,duration,unknown,5,0
+Transformer,2025-01 to 2025-03,episodes,non-recurrent,287,14
+Transformer,2025-01 to 2025-03,episodes,occasional,369,123
+Transformer,2025-01 to 2025-03,episodes,recurrent,901,684
+Transformer,2025-01 to 2025-03,episodes,unknown,4,0
+Transformer,2025-01 to 2025-03,duration,non-recurrent,287,27
+Transformer,2025-01 to 2025-03,duration,occasional,369,159
+Transformer,2025-01 to 2025-03,duration,recurrent,901,739
+Transformer,2025-01 to 2025-03,duration,unknown,4,0
+Transformer,2025-04 to 2025-06,episodes,non-recurrent,247,8
+Transformer,2025-04 to 2025-06,episodes,occasional,370,67
+Transformer,2025-04 to 2025-06,episodes,recurrent,913,605
+Transformer,2025-04 to 2025-06,episodes,unknown,6,0
+Transformer,2025-04 to 2025-06,duration,non-recurrent,247,10
+Transformer,2025-04 to 2025-06,duration,occasional,370,98
+Transformer,2025-04 to 2025-06,duration,recurrent,913,704
+Transformer,2025-04 to 2025-06,duration,unknown,6,0
+Boosted trees (29),2024-04 to 2024-06,episodes,non-recurrent,176,0
+Boosted trees (29),2024-04 to 2024-06,episodes,occasional,291,17
+Boosted trees (29),2024-04 to 2024-06,episodes,recurrent,977,452
+Boosted trees (29),2024-04 to 2024-06,episodes,unknown,9,0
+Boosted trees (29),2024-04 to 2024-06,duration,non-recurrent,176,1
+Boosted trees (29),2024-04 to 2024-06,duration,occasional,291,53
+Boosted trees (29),2024-04 to 2024-06,duration,recurrent,977,644
+Boosted trees (29),2024-04 to 2024-06,duration,unknown,9,0
+Boosted trees (29),2024-07 to 2024-09,episodes,non-recurrent,224,2
+Boosted trees (29),2024-07 to 2024-09,episodes,occasional,321,15
+Boosted trees (29),2024-07 to 2024-09,episodes,recurrent,937,532
+Boosted trees (29),2024-07 to 2024-09,episodes,unknown,9,0
+Boosted trees (29),2024-07 to 2024-09,duration,non-recurrent,224,8
+Boosted trees (29),2024-07 to 2024-09,duration,occasional,321,51
+Boosted trees (29),2024-07 to 2024-09,duration,recurrent,937,711
+Boosted trees (29),2024-07 to 2024-09,duration,unknown,9,0
+Boosted trees (29),2024-10 to 2024-12,episodes,non-recurrent,202,2
+Boosted trees (29),2024-10 to 2024-12,episodes,occasional,408,54
+Boosted trees (29),2024-10 to 2024-12,episodes,recurrent,931,631
+Boosted trees (29),2024-10 to 2024-12,episodes,unknown,5,0
+Boosted trees (29),2024-10 to 2024-12,duration,non-recurrent,202,7
+Boosted trees (29),2024-10 to 2024-12,duration,occasional,408,102
+Boosted trees (29),2024-10 to 2024-12,duration,recurrent,931,750
+Boosted trees (29),2024-10 to 2024-12,duration,unknown,5,0
+Boosted trees (29),2025-01 to 2025-03,episodes,non-recurrent,287,10
+Boosted trees (29),2025-01 to 2025-03,episodes,occasional,369,57
+Boosted trees (29),2025-01 to 2025-03,episodes,recurrent,901,619
+Boosted trees (29),2025-01 to 2025-03,episodes,unknown,4,0
+Boosted trees (29),2025-01 to 2025-03,duration,non-recurrent,287,20
+Boosted trees (29),2025-01 to 2025-03,duration,occasional,369,109
+Boosted trees (29),2025-01 to 2025-03,duration,recurrent,901,730
+Boosted trees (29),2025-01 to 2025-03,duration,unknown,4,0
+Boosted trees (29),2025-04 to 2025-06,episodes,non-recurrent,247,1
+Boosted trees (29),2025-04 to 2025-06,episodes,occasional,370,52
+Boosted trees (29),2025-04 to 2025-06,episodes,recurrent,913,586
+Boosted trees (29),2025-04 to 2025-06,episodes,unknown,6,0
+Boosted trees (29),2025-04 to 2025-06,duration,non-recurrent,247,3
+Boosted trees (29),2025-04 to 2025-06,duration,occasional,370,95
+Boosted trees (29),2025-04 to 2025-06,duration,recurrent,913,714
+Boosted trees (29),2025-04 to 2025-06,duration,unknown,6,1
