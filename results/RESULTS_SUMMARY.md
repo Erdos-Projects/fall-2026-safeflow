@@ -4,12 +4,13 @@
 
 At each station, every five minutes, predict whether measured speed will fall below **40 mph at any point in the next 30 minutes**. This page is a working overview of the repository's results, with completed evidence separated from pending work.
 
-> **Development snapshot - 2026-11-04 15:09 EST.** The full local benchmark is complete for all three models, including all ten Transformer epochs and checkpoint reproduction checks. **The July-December 2025 holdout remains untouched.**
+> **Updated 2026-11-04 16:17 EST.** Development analyses and the full local benchmark are complete. The July-December 2025 holdout has now been evaluated once with frozen checkpoints and calibration-derived thresholds.
 
 [Training and notebook guide](../notebooks/README.md) | [Project setup](../README.md) | [Published metrics](../notebooks/results/summary.csv) | [Detailed tables and methods](#detailed-tables-and-methods)
 
 ## What the evidence says so far
 
+- **Holdout AP:** boosted trees **0.7412**, Transformer **0.7380**, Random Forest **0.7216**. Transformer catches more onsets early under the frozen duration policy, but **all three models exceed the intended warning budgets**.
 - **Boosted trees lead on ranking quality:** mean development AP **0.7666**, compared with **0.7625** for Transformer and **0.7495** for Random Forest.
 - **Transformer and boosted trees are close on early detection:** **53.2% versus 52.7%** under the forward duration-budget policy. The paired interval does not clearly separate them; Transformer generated lower average warning burden under that policy.
 - **Unusual congestion is the main weakness:** all models miss most non-recurrent onsets when at least 15 minutes of warning is required.
@@ -62,9 +63,25 @@ These are fresh one-fold results, not replacements for the six-fold published me
 
 [Completed benchmark tables](local_model_benchmark/20261104_115016_080613/manifest.json) | [Benchmark notebook](../notebooks/analysis/local_model_benchmark.ipynb)
 
+## 6. Frozen-checkpoint holdout evaluation
+
+| Model | Holdout AP | Brier | Early catch: duration policy | Actual wrong hours/day |
+| --- | --- | --- | --- | --- |
+| Boosted trees | 0.7412 | 0.0238 | 54.3% | 4.87 |
+| Transformer | 0.7380 | 0.0240 | 56.7% | 4.97 |
+| Random Forest | 0.7216 | 0.0248 | 43.9% | 4.81 |
+
+![Holdout precision-recall and monthly AP](figures/summary/holdout_ranking.png)
+
+![Holdout detection and actual warning burden](figures/summary/holdout_warning_tradeoffs.png)
+
+The test covers 966,000 rows, 125 days and 3,497 onsets. Checkpoints were fitted before April; April-June supplied calibration. No holdout fitting or threshold adaptation occurred. Under the duration policy, Transformer gains 2.34 detection percentage points over boosted trees (weekly interval +1.19 to +3.49), with 0.097 additional wrong-alert hours/day (interval spanning zero). All duration and episode calibration budgets were exceeded. These results do not establish performance at identical realized cost.
+
+[Full holdout report](holdout_evaluation/20261104_160843_077282/HOLDOUT_REPORT.md) | [Frozen protocol](holdout_evaluation/20261104_160843_077282/frozen_protocol.json) | [Independent verification](holdout_evaluation/20261104_160843_077282/verification.json)
+
 ## Current decision and next steps
 
-Keep **Transformer and boosted trees as finalists**. Use the completed local measurements to compare detection and actual warning burden together with deployment cost, and investigate non-recurrent congestion. The optional missing-feature tests are diagnostics, not causal raw-detector outage simulations. Freeze the final model and threshold-calibration procedure before accessing the holdout.
+Keep **Transformer and boosted trees as finalists**. Use the completed local measurements to compare detection and actual warning burden together with deployment cost, and investigate non-recurrent congestion. The optional missing-feature tests are diagnostics, not causal raw-detector outage simulations. The holdout is now used; further tuning needs fresh independent validation.
 
 ## Detailed tables and methods
 
@@ -183,9 +200,9 @@ Sources: [training](local_model_benchmark/20261104_115016_080613/training.csv), 
 1. Compare the completed last-fold predictive and operational results together, while preserving the distinction from six-fold and forward-policy estimates.
 2. Compare fresh last-fold detection and actual burden together with latency, training cost and memory. A small AP or detection difference alone is not a decisive deployment argument.
 3. Investigate non-recurrent congestion and run causal raw-detector outage tests if outage robustness is part of the intended deployment claim.
-4. Freeze the final feature source, model-fitting dates, threshold-calibration procedure and primary reporting metrics before evaluating the untouched July-December 2025 holdout. Do not tune on that holdout afterward.
+4. Preserve the frozen-checkpoint holdout results. Any subsequent model or policy tuning requires a new independent test period.
 
-**Current conclusion:** keep Transformer and boosted trees as the leading candidates. Transformer has favorable early-warning development evidence under the selected duration policy; boosted trees have the best published mean AP and strong completed local efficiency measurements. The local benchmark now quantifies their training and inference tradeoffs; a final choice still requires the frozen evaluation protocol.
+**Current conclusion:** keep Transformer and boosted trees as the leading candidates. Transformer has favorable early-warning development evidence under the selected duration policy; boosted trees have the best published mean AP and strong completed local efficiency measurements. The local benchmark now quantifies their training and inference tradeoffs; the frozen-checkpoint holdout has now been evaluated and does not support a budget-compliant winner at the intended cap.
 
 
 </details>

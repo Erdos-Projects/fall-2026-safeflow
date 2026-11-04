@@ -1,0 +1,23 @@
+{
+  "status": "complete",
+  "holdout_used": true,
+  "holdout_start": "2025-07-01",
+  "holdout_end": "2026-01-01",
+  "completed_at_utc": "2026-11-04T21:12:32.912917+00:00",
+  "protocol_sha256": "8ab9b3ad1e748b850798bbac1991c7478ed6457fe32bfc24b652f31633502971",
+  "models": [
+    "random_forest",
+    "boosted_trees",
+    "transformer"
+  ],
+  "refitted": false,
+  "thresholds_changed_after_access": false,
+  "rows": 966000,
+  "onsets": 3497,
+  "days": 125,
+  "calibration_feature_reproduction": true,
+  "team_summary_modified": false,
+  "note": "Holdout has now been evaluated and must not be described as untouched. Future tuning requires a new independent test period.",
+  "verification": "verification.json",
+  "evaluator_sha256": "42523c6e4b0a9e35daced0f2fcee93fad2470d734aa1fa8dabb3beffa07845cb"
+}

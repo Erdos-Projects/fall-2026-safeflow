@@ -69,3 +69,13 @@ See [the operational benchmark protocol](operational_benchmark_protocol.md) for 
 ## Local fresh-fit benchmark
 
 `notebooks/analysis/local_model_benchmark.ipynb` uses `local_benchmark.py` workers to train and benchmark RF, boosted trees and Transformer on the same last development fold. Set `QUICK_RUN = False` for established full model sizes and the 2-million training cap. Install `requirements-benchmark.txt` in the selected kernel. Each model runs in separate training/inference processes, with common thread limits and checkpoint reproduction checks. Outputs are under `results/local_model_benchmark/<run>/`; fitted models stay in each model's local results directory. No team metrics are published automatically.
+
+## Frozen holdout evaluation
+
+`evaluate_holdout.py` evaluates the unchanged local checkpoint fits, using April-June 2025 for calibration and July-December 2025 for testing. It writes a frozen protocol and hashes before reading holdout files, uses only the original training mask for typical features, and checks calibration-feature reproduction. The shared module's default holdout exclusion is unchanged.
+
+The completed report is [HOLDOUT_REPORT.md](../../results/holdout_evaluation/20261104_160843_077282/HOLDOUT_REPORT.md). Holdout data has now been evaluated and must not be described as untouched. There was no final refit through June and no holdout-based retuning. To regenerate tables/plots from the existing frozen artifacts, use the report-only stage:
+
+```text
+python -m src.analysis.evaluate_holdout --stage report --run-dir results/holdout_evaluation/20261104_160843_077282
+```

@@ -1,0 +1,37 @@
+model,policy,group,onsets,caught,catch_rate
+Random Forest,episodes,non-recurrent,634,1,0.0015772870662460567
+Random Forest,episodes,occasional,918,15,0.016339869281045753
+Random Forest,episodes,recurrent,1904,750,0.3939075630252101
+Random Forest,episodes,unknown,41,0,0.0
+Random Forest,duration,non-recurrent,634,15,0.02365930599369085
+Random Forest,duration,occasional,918,147,0.16013071895424835
+Random Forest,duration,recurrent,1904,1371,0.720063025210084
+Random Forest,duration,unknown,41,3,0.07317073170731707
+Random Forest,default_0.5,non-recurrent,634,16,0.025236593059936908
+Random Forest,default_0.5,occasional,918,162,0.17647058823529413
+Random Forest,default_0.5,recurrent,1904,1401,0.7358193277310925
+Random Forest,default_0.5,unknown,41,4,0.0975609756097561
+Boosted trees,episodes,non-recurrent,634,17,0.026813880126182965
+Boosted trees,episodes,occasional,918,141,0.15359477124183007
+Boosted trees,episodes,recurrent,1904,1260,0.6617647058823529
+Boosted trees,episodes,unknown,41,0,0.0
+Boosted trees,duration,non-recurrent,634,41,0.06466876971608833
+Boosted trees,duration,occasional,918,275,0.2995642701525055
+Boosted trees,duration,recurrent,1904,1582,0.8308823529411765
+Boosted trees,duration,unknown,41,2,0.04878048780487805
+Boosted trees,default_0.5,non-recurrent,634,60,0.0946372239747634
+Boosted trees,default_0.5,occasional,918,326,0.355119825708061
+Boosted trees,default_0.5,recurrent,1904,1646,0.8644957983193278
+Boosted trees,default_0.5,unknown,41,3,0.07317073170731707
+Transformer,episodes,non-recurrent,634,33,0.052050473186119876
+Transformer,episodes,occasional,918,233,0.25381263616557737
+Transformer,episodes,recurrent,1904,1393,0.7316176470588235
+Transformer,episodes,unknown,41,0,0.0
+Transformer,duration,non-recurrent,634,58,0.0914826498422713
+Transformer,duration,occasional,918,348,0.3790849673202614
+Transformer,duration,recurrent,1904,1575,0.8272058823529411
+Transformer,duration,unknown,41,1,0.024390243902439025
+Transformer,default_0.5,non-recurrent,634,86,0.13564668769716087
+Transformer,default_0.5,occasional,918,426,0.46405228758169936
+Transformer,default_0.5,recurrent,1904,1667,0.8755252100840336
+Transformer,default_0.5,unknown,41,2,0.04878048780487805

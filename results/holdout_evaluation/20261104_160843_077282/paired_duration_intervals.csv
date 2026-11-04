@@ -1,0 +1,5 @@
+model_a,model_b,metric,block,difference,ci_low,ci_high,blocks,repetitions,seed
+Transformer,Boosted trees,catch_15min,week,0.02344867028881903,0.011931829334162964,0.034945037904077283,28,5000,42
+Transformer,Boosted trees,false_episodes_per_day,week,-1.9760000000000026,-2.5433422956276814,-1.370967741935484,28,5000,42
+Transformer,Boosted trees,wrong_alert_hours_per_day,week,0.09733333333333327,-0.05249520492630777,0.28252398373983706,28,5000,42
+Transformer,Boosted trees,rare_catch_15min,week,0.026813880126182965,0.007223880782417143,0.0444811276507179,28,5000,42

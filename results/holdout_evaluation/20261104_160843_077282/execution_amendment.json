@@ -1,0 +1,9 @@
+{
+  "reason": "Windows DLL import failure before Transformer inference; initialize PyTorch before Arrow/threadpool DLL loading",
+  "evaluator_sha256_before": "8da4ca2d6a218b6d46416ba342d82b1eb7f307468b5f4ac47a62df3262a5f527",
+  "evaluator_sha256_after": "42523c6e4b0a9e35daced0f2fcee93fad2470d734aa1fa8dabb3beffa07845cb",
+  "model_settings_changed": false,
+  "thresholds_changed": false,
+  "features_changed": false,
+  "frozen_protocol_changed": false
+}

@@ -4,7 +4,7 @@
 
 SafeFlow asks whether a traffic station will become congested within the next 30 minutes, and whether that warning can arrive early enough to be useful without generating too many false alerts. We compare tabular tree models with a Transformer using a shared set of traffic, spatial and temporal features.
 
-> **Project status: development, November 2026.** The current comparison uses D12 data. Development validation and forward warning-policy analyses are complete; the full local benchmark is complete. The July-December 2025 holdout remains reserved for final evaluation. No final model has been selected.
+> **Project status: development, November 2026.** The current comparison uses D12 data. Development validation and forward warning-policy analyses are complete; the full local benchmark is complete. The July-December 2025 holdout has now been evaluated once using frozen checkpoints and development-calibrated thresholds. No final model has been selected.
 
 [Problem](#the-problem) | [Stakeholders](#stakeholders) | [Dataset](#the-dataset) | [Models](#the-models) | [Metrics](#how-performance-is-measured) | [Results](#what-we-have-found) | [Current workflow](#current-workflow-and-planned-delivery)
 
@@ -43,7 +43,7 @@ The project uses local **Caltrans PeMS station measurements** and station metada
 | Traffic measurements | Speed, flow, occupancy and percentage observed |
 | Spatial context | Station order, postmile, neighboring detectors and nearby ramps |
 | Development period | January 2023-June 2025 |
-| Reserved holdout | July-December 2025; untouched |
+| Holdout evaluation | July-December 2025; completed once with frozen checkpoints |
 | Days retained | Weekdays, excluding US federal holidays |
 | Forecast origins retained | 06:00-19:55; label availability further restricts training and scoring |
 | Outcome eligibility | All six future readings must be measured for the target to be treated as known |
@@ -90,7 +90,7 @@ There are two complementary development comparisons:
 1. **Model quality across six quarters:** evaluate saved out-of-fold probabilities and report AP, probability error and warning metrics.
 2. **Forward warning policies across five quarters:** select each model's threshold using earlier out-of-fold quarters only, freeze it, then measure detection and actual burden in the next quarter. Q1 2024 initializes threshold calibration; Q2 2024 through Q2 2025 are evaluated.
 
-The final holdout will be accessed only after the model and threshold-calibration procedure are frozen. Forward threshold testing remains development evidence: the broader feature and model choices have already been informed by development results.
+The holdout was accessed only after the checkpoints, feature rules and threshold policies were frozen. Forward threshold testing remains development evidence: the broader feature and model choices have already been informed by development results.
 
 ## How performance is measured
 
@@ -108,6 +108,24 @@ Congestion onset is relatively uncommon among currently uncongested forecast ori
 Despite its saved name, **`AP, onsets` is a ranking metric over eligible forecast origins, not event detection recall**. Both measures are needed. Likewise, a threshold of 0.5 can produce different alert volumes for different models because their score distributions and calibration differ.
 
 ## What we have found
+
+### Holdout evaluation: July-December 2025
+
+| Model | Holdout AP | Brier | Early catch: duration policy | Actual wrong hours/day |
+| --- | --- | --- | --- | --- |
+| Boosted trees | 0.7412 | 0.0238 | 54.3% | 4.87 |
+| Transformer | 0.7380 | 0.0240 | 56.7% | 4.97 |
+| Random Forest | 0.7216 | 0.0248 | 43.9% | 4.81 |
+
+These frozen models were fitted before April; April-June predictions calibrated their thresholds. They were not refitted through June. All three models exceeded the 4 wrong-alert-hours/day budget on holdout, so the higher detection rates do not establish compliant operation at that cap.
+
+![Holdout probability ranking and monthly AP](results/figures/summary/holdout_ranking.png)
+
+![Holdout warning tradeoffs under frozen policies](results/figures/summary/holdout_warning_tradeoffs.png)
+
+Transformer's duration-policy detection advantage is 2.34 percentage points (paired weekly 95% interval +1.19 to +3.49), with slightly higher wrong-alert duration. Boosted trees have the highest AP point estimate. These are not exactly matched-cost comparisons. [Full holdout report](results/holdout_evaluation/20261104_160843_077282/HOLDOUT_REPORT.md) and [frozen protocol](results/holdout_evaluation/20261104_160843_077282/frozen_protocol.json).
+
+The development results below retain their original scope and values.
 
 ### 1. Boosted trees lead on mean AP; Transformer is close
 
@@ -171,7 +189,7 @@ Transformer and boosted trees remain the leading candidates. The local benchmark
 
 Current evidence is limited to this D12 corridor and development period; performance on D7 or a combined analysis is not established. The historical Transformer export also records a different shared-feature source hash from the current module. Fresh local fits use the current shared source, but do not establish exact reproduction of that historical run.
 
-The final step is to freeze the feature source, fitting procedure, warning policy and reporting metrics, then evaluate the untouched holdout without further tuning on it. The [visual results overview](results/RESULTS_SUMMARY.md) preserves detailed tables, artifact links and the completed local benchmark snapshot.
+The frozen-checkpoint holdout evaluation is complete. Further model or policy tuning requires new independent validation; this same period can no longer serve as an untouched test. The [visual results overview](results/RESULTS_SUMMARY.md) preserves detailed tables, artifact links and the completed local benchmark snapshot.
 
 ## Current workflow and planned delivery
 

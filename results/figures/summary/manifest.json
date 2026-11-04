@@ -1,6 +1,6 @@
 {
   "updated_at": "2026-11-04 13:01 EST",
-  "holdout_used": false,
+  "holdout_used": true,
   "local_benchmark_status": "complete",
   "sources": [
     {
@@ -58,6 +58,18 @@
     {
       "path": "results/local_model_benchmark/20261104_115016_080613/feature_stress.csv",
       "sha256": "8c21ac60979de99349ea338ec3cf95af9ff117c5cf9d6a0bb39f9289b5246eab"
+    },
+    {
+      "path": "results/holdout_evaluation/20261104_160843_077282/frozen_protocol.json",
+      "sha256": "8ab9b3ad1e748b850798bbac1991c7478ed6457fe32bfc24b652f31633502971"
+    },
+    {
+      "path": "results/holdout_evaluation/20261104_160843_077282/holdout_metrics.csv",
+      "sha256": "1ee9d0e5b11de8aacf2843b5c4f3ebebf0ef87adb8a575b7d8309727afa42ba8"
+    },
+    {
+      "path": "results/holdout_evaluation/20261104_160843_077282/evaluation_manifest.json",
+      "sha256": "f71d36ad3bd9d9269a7a3a4ab3873a157dedb44ed4e95699fd4049d47d3c5228"
     }
   ],
   "figures": {
@@ -66,8 +78,11 @@
     "paired_uncertainty.png": "Primary duration-policy weekly paired intervals",
     "recurrence.png": "Forward duration-policy group detection; unknown recurrence excluded from groups",
     "local_benchmark_partial.png": "Historical two-model snapshot, superseded by local_benchmark.png",
-    "local_benchmark.png": "Completed all-model local benchmark: training.csv, latency.csv, inference.csv"
+    "local_benchmark.png": "Completed all-model local benchmark: training.csv, latency.csv, inference.csv",
+    "holdout_ranking.png": "Frozen-checkpoint July-December 2025 evaluation; results/holdout_evaluation/20261104_160843_077282/holdout_ranking.png",
+    "holdout_warning_tradeoffs.png": "Frozen-checkpoint July-December 2025 evaluation; results/holdout_evaluation/20261104_160843_077282/holdout_warning_tradeoffs.png"
   },
   "page_updated_at": "2026-11-04 15:09 EST",
-  "transformer_completed_epochs": 10
+  "transformer_completed_epochs": 10,
+  "holdout_status": "evaluated with frozen checkpoints"
 }

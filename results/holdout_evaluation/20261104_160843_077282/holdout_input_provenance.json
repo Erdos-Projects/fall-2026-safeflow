@@ -1,0 +1,512 @@
+{
+  "files": [
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_01.parquet",
+      "sha256": "f7f6bef168c23b15b97019e1bebfbb71da53eba3674c2e6598750cc8daa281e8"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_02.parquet",
+      "sha256": "94af9581d5bbc76b13a7d4979c10126578188c32d01e03c86d52e22c63bd2469"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_03.parquet",
+      "sha256": "d76db91e95a79ee6cd12bfdf963c366b9eb875e18b8b1bad32418bacd442f712"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_07.parquet",
+      "sha256": "3df6872c4b8227b4889ef23568f0c6744f2da4dafa9bc2d99240a08582f90ff0"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_08.parquet",
+      "sha256": "61b042ffb34de2d70521312551d81fff45738bb1bb8884deb49373e8bf52d1e0"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_09.parquet",
+      "sha256": "79fc89e322b5bbd514d9185553d284d6f2f5ec34a5f72d6d21e3d4a418ea5129"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_10.parquet",
+      "sha256": "64b060b7c4c27fcb4f62df879b20d292edd9bb911a6752ec1cc1d04e0e038e53"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_11.parquet",
+      "sha256": "1491116d72337348feaf0f0a0336718d1a7a2c81177b175e843a54a155b8d2de"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_14.parquet",
+      "sha256": "9dd74c53a8dc845a686f69206bd795121810acc251343a3b36d1b84d8184a071"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_15.parquet",
+      "sha256": "893c57708cce4571920c2b88c8c3655ce9cbee9273fc83ff87f40707300e13da"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_16.parquet",
+      "sha256": "d56406a17e82c10126aff01d176f23c0a5ed9b2f361d2ef48633179faa016ffa"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_17.parquet",
+      "sha256": "8a949c8cf8329ffb60f4dce2c0993f4aaebdb238bccc8bcaaa1fe8d8e4032ed9"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_18.parquet",
+      "sha256": "16d52907ae2a3a57a8211d6a4f2111cd494a43469dd79ac2410ba01061c66878"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_21.parquet",
+      "sha256": "16c8510e68b6ddd07265f695be2e64a64e41e6ea63564e82e93dca6d79ca0a48"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_22.parquet",
+      "sha256": "62e61c9541202844920a4945025c8a5f12875a1cefb744c5b99d5b224ea72afd"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_23.parquet",
+      "sha256": "5c5f6c09fea05a18ba2e8a20552580a6c0c49920340939a7668a528dba2ade80"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_24.parquet",
+      "sha256": "f605ce480fba176cb296431bccc07722ec07e35958c4756739fd4c0c895b837a"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_25.parquet",
+      "sha256": "45ad69e2db7fc7b6b96eda455abdf1aeb88220df4031fc326bbcfe25d1969fee"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_28.parquet",
+      "sha256": "3de3b6c50ba68ea5d5f946ffc035ac568fda95e0b173afa6fffd72080cbc0e31"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_29.parquet",
+      "sha256": "0fb9246187378a633a5cfb34d7280922928087645920c8e23b0669b7a036b068"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_30.parquet",
+      "sha256": "4229a6f4bb3268b5ff6874cdc8c2860a344860dd807d9591c35d4f44955b7b60"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_07_31.parquet",
+      "sha256": "9f9454cebb47baedba7eca14f552cf0d63f7ccd811fa6e348ca7420e1699e744"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_01.parquet",
+      "sha256": "a4b3588173764ef1fad205f6a3a04b166e0d5738f5cfdcbd4f58bd3499ccc6fb"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_04.parquet",
+      "sha256": "228a47e99d3457c992f9fc8fc1ff20ae5c87d83919e598b924c2bb84c0518fad"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_05.parquet",
+      "sha256": "fb78e552798475622a4079a0c5d292ce89661f59b21906266f70745db201530d"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_06.parquet",
+      "sha256": "a1ed00a7415406efaaa0fb466da28248a8f7857d494d89d1fd15cda76c7d4e15"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_07.parquet",
+      "sha256": "6f3b34a5a6365474cac6799f3ba2311fb096ce1dc8b975c63f0e4b218a586fcf"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_08.parquet",
+      "sha256": "c6ce8f5d2fd1b7c9b7e3e3672cd80c4bb3b361f1258c70941e8c1188b506433f"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_11.parquet",
+      "sha256": "018ead7fda3ee2ce779de6cf69e93c7da136cf4553d2356a2357bdb6365f29e1"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_12.parquet",
+      "sha256": "da968b62ded4b6da9834411481cf35aacc3ff8f7c2dfbdf364532055dcb2383f"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_13.parquet",
+      "sha256": "e01d29da9c00fb14f0de62bf02a2a5238727be1398411ce9f7eda5d0588a2a74"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_14.parquet",
+      "sha256": "388c7e2868073e2f2e2fb36bebcacee2cefff6486c119906634a677b4a522a07"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_15.parquet",
+      "sha256": "1702a8eaf2ac133f052f3061ef1e01695e17c0f6d9ce0baa090326c9ddb70a25"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_18.parquet",
+      "sha256": "661aab0a9483409a57b0720817a4a082f4254423c5c549845c9e16ee1589d123"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_19.parquet",
+      "sha256": "b0acec9756d399b1b7fe3593bcce5c08e9e3b41db8c1bad6c3707beaab13417f"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_20.parquet",
+      "sha256": "bad274ea6d46b4709e3144019d901089c4f30ab84206291036086ce0988baa79"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_21.parquet",
+      "sha256": "fe568e59a0e89f253951855c5769ea3ea8b32cf91308a1132d828e26624bca39"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_22.parquet",
+      "sha256": "0197323369ee84966d9068ffb19b4b9712b4f8b05ee7690f6d4d8a735a181881"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_25.parquet",
+      "sha256": "d9705b7e06caa360c4caeda6765a7cdf2aef63685adeeac057845279414ec96f"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_26.parquet",
+      "sha256": "c9c5a7ed912701702ecb2b916ef406f348a38b1b9577d19fd22767764af7fcb8"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_27.parquet",
+      "sha256": "de321d764b4a6b4ec52dbcf5f83fa5e090bd6fdee49cb1087f12dee6f0f4549c"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_28.parquet",
+      "sha256": "b97ecb454ed656273d373314d4fb8e4d067de72daa284f2df63b779df6a2ddcf"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_08_29.parquet",
+      "sha256": "1c364a38766a7f16b14162c8e4847dbc02f0fa0e8f417d34ae68851078487eb4"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_02.parquet",
+      "sha256": "0872fd1cd2c1503132479494a42d9f449c239e8bd7991d65cf204480c8287f01"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_03.parquet",
+      "sha256": "6c4e468e2fa2a730f63e521a0e5bf8f8ff1da1c2739c55e29d37fd43b8b7dab1"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_04.parquet",
+      "sha256": "338ed30acb7dd1830f4f867730586395981ef3a367e82c05903f5e0919344308"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_05.parquet",
+      "sha256": "2a8c2efbd921889edb0df81c102e4b6d90e1d0686bf5d9c774c09c18c5fea857"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_08.parquet",
+      "sha256": "5f82624cba0b6087b0235ce096fc32e7c3c81f3fc67d985f508b79e1c93cc323"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_09.parquet",
+      "sha256": "449cfe4246a9a9db9cf1364ec5e09aed10f577e09b93e9e3ad8758dd09ac78bb"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_10.parquet",
+      "sha256": "284d24eec46da503d24816da0be594c8dc9d47b97eccd4673f3ce5d920ae2304"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_11.parquet",
+      "sha256": "e59870d4d289fae7f5846b880983d80c798a2f150b74f6813080b95c13bc3b36"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_12.parquet",
+      "sha256": "4e9880c46fdc470d77f934f4159156ff2839d16dc445b697cf4e1cc8c211a1b0"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_15.parquet",
+      "sha256": "acc9e512dadc27daefac544d6f1c97cddd98d9e2a17a1bcef75f301d88d82a1c"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_16.parquet",
+      "sha256": "9d82cb311e9593f57608a8f2c3151dd15eb584d48753931566f4b5908ccf8f80"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_17.parquet",
+      "sha256": "89d2d698b7262883a3bb1a73d8a2b674e187548c0e3acca1716806b2c3517177"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_18.parquet",
+      "sha256": "255f7c7d37cb6e1983006730438384fe1f724f1c6a2a716c5dcf14737be42176"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_19.parquet",
+      "sha256": "5f519c598a686519d1cd9fff2fc5c3d8b61c995de64a86442a08ab035d5fcd82"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_22.parquet",
+      "sha256": "a0460be98edcdae8152fd452c23245578d0782e51ae7774960976351859da617"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_23.parquet",
+      "sha256": "b60511192438483b019b39ef2e9bf5234fc15bfe9327808cb79a487b50687cab"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_24.parquet",
+      "sha256": "71987c9466a297aff54d5bd2cca4b526522193b105620de4c490cbde18582e54"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_25.parquet",
+      "sha256": "6be0a99fa77b65c62666210faf4823df599bc5473c16b4528a108631b1688f2b"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_26.parquet",
+      "sha256": "d576be13605808e50a899445e2352b3d9328ead8c31080f79b4b64f2de87d6cc"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_29.parquet",
+      "sha256": "bc716490ac5fc517b25950cd886367ce7f8402019635ad41b938aa5f5c7fb648"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_09_30.parquet",
+      "sha256": "2c0d5c849dc0b849d12ec669832bf4a624427b54f2d4e5bb573ea492cbd0390f"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_01.parquet",
+      "sha256": "9eadb4500b0a42451588ef3c6c042c96431b780945143f8178f63952ff5f4dda"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_02.parquet",
+      "sha256": "4c6e24d2ce7a8174a934da795e86fa9e22ad28bb36910c7a701e34cb3c2009c1"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_03.parquet",
+      "sha256": "2a1cdf4e640bc52db5951b847fe004a10ac02b6f722e797d9c97f48ad860e25b"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_06.parquet",
+      "sha256": "acfcb1ba523c1e521e8f5f640b2f06a043070374323690dadabf3a50748b26ad"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_07.parquet",
+      "sha256": "fc415c1d9558b54f465dbb4d7cb86c23e47da156e6595c7ff5337ac43083c85b"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_08.parquet",
+      "sha256": "258c31196fa0c5cb651bd68023fe58eb94a79d53d765c125ec3f116bfa993aed"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_09.parquet",
+      "sha256": "04ecdc96dae060be30c69dfd74e6ad4ad4d961fc4e5f8b6c1c96e41db3ebe42c"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_10.parquet",
+      "sha256": "8ba773fc2e2ced222fbf205932c4b17c55587fb4b0f166248afab2551ce624d4"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_14.parquet",
+      "sha256": "142391eb82161a2c5c7646715ad9ea88668f6cc7d7b443884487d9fe2ed45ab6"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_15.parquet",
+      "sha256": "3be29af48b13f06846639e501ecf67d6f47fc04288573cb58f772693fc87de8e"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_16.parquet",
+      "sha256": "8e56862b236f10e79ae28ae5dce7245dc5ba88d7af1b99b16bc8c32ad1ac34cc"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_17.parquet",
+      "sha256": "014b36aedc5b34fc1cba21f09130a405c218368021261fa9df3bd72120c2c243"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_20.parquet",
+      "sha256": "a98b87ac77d7683cd6ecb9ffea3d6edc5994f74515ab54dcb9a24a9323a5d487"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_21.parquet",
+      "sha256": "ba028e8c42752243b1111df7f669996f98eecf366d75160c446300242ae5d079"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_22.parquet",
+      "sha256": "9a3811a89645933466973bbe6c855eeb5bec5e58bec6ddc5e0b35ab2b924b7fe"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_23.parquet",
+      "sha256": "b36e0cf6f95f066e554a68b77f43a32dd369c897b6685b4eb57a7435599d92d7"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_24.parquet",
+      "sha256": "0bd9e26bda71ee6a8440b447876e0d93edd6697320295e1ede4495bcac31d396"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_27.parquet",
+      "sha256": "b05fc09ad227ab571b9bb663d1a713077b90fd57cf7b30e8c2d902f8f4bb01ca"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_28.parquet",
+      "sha256": "40cbb4b92c1699287e64ef4699162b343b7bb7942238ccc29b426629c3e085f1"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_29.parquet",
+      "sha256": "c8a5fed8be657afdf276d2a443645571b6b7e70c5604a2613a9a059e641dd3f6"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_30.parquet",
+      "sha256": "6407bfd0a542f4d0703f9723db45567199874ec70d5d2f3196ee11b6a7740bb3"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_10_31.parquet",
+      "sha256": "bd861247253d8c0d8a3f58e67e1291b51a8145860f7e591deaf8d0ec9c5b460f"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_03.parquet",
+      "sha256": "413eee192c2a10b97310b8f68a808f5ad34da4ae53d7a2c1a73f6c80377eff7a"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_04.parquet",
+      "sha256": "8aedfea4905b25de84f4cdb430383c92dce6865b03dff80bf8c429fb569da843"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_05.parquet",
+      "sha256": "cec67f80201b37fa2736acfb6f9a7d15a4e201267ec79ea9caf639eb681d5257"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_06.parquet",
+      "sha256": "d0883fa5720f83d4bedfd18b52962d35140834dffbae4782b838b9705c58726a"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_07.parquet",
+      "sha256": "fde2183e638e112f929ebe1a7ae8c2931ce8c8c09e57db2f0eb9d29070127929"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_10.parquet",
+      "sha256": "938c454dfa302c6135fdb922a14c0d0a0193e64300b3c3cb336b413aae035b8e"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_12.parquet",
+      "sha256": "bb4068b02557c88fe476ba44223e5b29469586d0095179b6aab7810da6d76678"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_13.parquet",
+      "sha256": "fa8842fd1ddfc680d213f2671b296920f95cefa7e2d1c510abaefe328a92c759"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_14.parquet",
+      "sha256": "aa6b351402b9564f94399a24e04e392896736967153e5061500e5c45aa1c305a"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_17.parquet",
+      "sha256": "70b342a1854e9dcf079bb38f31a69c8c0c145c2b16eda7d92c665181f894f8da"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_18.parquet",
+      "sha256": "96574a64cf98d59c55f4be270550a64908be1e4cf20d06b903971159f207471b"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_19.parquet",
+      "sha256": "fb6b9733f6955d67db6f24f6c24f71be8f402c57a64a24ea1f1ee7e0c7f37e45"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_20.parquet",
+      "sha256": "8155e59f6f8db5893dada2c15b676100e2ceed297683db34ff2b81c8e5fe7066"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_21.parquet",
+      "sha256": "f1cb863837c9d7a692f041ebb1540d448a66a33e15f59b42fe2b9ad89e634644"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_24.parquet",
+      "sha256": "01ef392e97ceaed74e834c65f131a257fd970e9543617d41f7221f3a575d9ec1"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_25.parquet",
+      "sha256": "807f91258e7ba1ac6f976d23c0541da4dc32279bda2e573496aa782b5da9e697"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_11_26.parquet",
+      "sha256": "d4b8af1539e4522b8a4e16aaa2036127f1c759faaa6a472fd374c6fa17a15b97"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_01.parquet",
+      "sha256": "f4da8c3ad1393081ef59e02e2e0019cc531d5788f47a6cc1af9e296cba767fb8"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_02.parquet",
+      "sha256": "a30e0605d77445cd5039c72f50be41eb07e07825c587f4ce588ce2ee299a8854"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_03.parquet",
+      "sha256": "e77d3c08e45ce665e1cf9d32341d6fd9106a0063b2108180f0c9ece48e10050d"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_04.parquet",
+      "sha256": "0a9f209f9b91800f4e6eda8cc66a69f74481b57b09ba5c35084db700fb4f19c3"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_05.parquet",
+      "sha256": "e48805f3df131ad580c6dac3f4d0cc3c235145c5a87acfd462b783cb6d20a893"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_08.parquet",
+      "sha256": "22d22b7e933c3c69f94b2b13e4daad99241d4ea1e02aa691b24e7f315ad976ed"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_09.parquet",
+      "sha256": "cb8f70c17fe973d60a491e0c3279c369948bf81568da12300874242a1f624ea6"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_10.parquet",
+      "sha256": "c0e4a5cf79fd83096694115aeb27f2f091b20931232b299da5d4de79f656d245"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_11.parquet",
+      "sha256": "2cd775189ddbe3fa3de7b44e5ef470bb01e0ee271b23fc8110bcc3d2c0d61983"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_12.parquet",
+      "sha256": "e881f30ebcf9f1412878160bff71e05fa90d3dac112cefbece545f153a12e511"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_15.parquet",
+      "sha256": "1e753e66f09c826f0be8d1d638b56c8531d6e04e24abbd2f6776cf233760bd4c"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_16.parquet",
+      "sha256": "91ff0532dd5bb043f2e5bb0289d86132acc4bc7e7881e645de91cf5dd041177a"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_17.parquet",
+      "sha256": "1d2e3dd8609216a29d52c88e27ffa64d939534302ce44ea1aef6b9733d6fed33"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_18.parquet",
+      "sha256": "2480cf7e2fa0a20a78569ceeb2af869b0ca6e38dd89bfcc9916a3be28d01196f"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_19.parquet",
+      "sha256": "7be1e713ccee8c42c443aadbdb4f8b618a8099cbe6c7cebbfa44da86e53b5b34"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_22.parquet",
+      "sha256": "d5b5d2d04808c27f5adbcb02dd07b1175a6385c76a9f48cc3b9aee9574e0a198"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_23.parquet",
+      "sha256": "440cb37ec8107a6ec4ca1312ea5324572dd4da7664d987a0f94ded8adc7a9974"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_24.parquet",
+      "sha256": "f3a955c53a5a7c45c440392ed9fe63dc7bf89c859cb1d65e7acaafbefaaacc92"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_26.parquet",
+      "sha256": "50e45e948bd445ac2f22e8b21ed901b5ea9cf690064485868bafa0ecd973a843"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_29.parquet",
+      "sha256": "f54778a2682e00ebea409a2cbd2a9981db2e14651dc59acaac7ba3b3a53a2e92"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_30.parquet",
+      "sha256": "1ecbc52473aff89e45d223c781b2625697e24da7cec6596561da6382eda3f211"
+    },
+    {
+      "path": "D12 2025\\pems_parquet\\station_5min\\d12_text_station_5min_2025_12_31.parquet",
+      "sha256": "619a2b4e9ec60797b5074602639017768697d0339bccb54e1b6726b63110a238"
+    }
+  ],
+  "rows": 966000,
+  "days": 125,
+  "stations": 46,
+  "min_time": "2025-07-01 06:00:00",
+  "max_time": "2025-12-31 19:55:00",
+  "onsets": 3497,
+  "calibration_feature_reproduction": true,
+  "training_statistics_used_test_labels": false
+}
