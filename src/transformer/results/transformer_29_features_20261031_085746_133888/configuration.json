@@ -1,0 +1,73 @@
+{
+  "model": "transformer_shared_plus_agreed_features",
+  "quick_run": false,
+  "features": [
+    "speed_anomaly",
+    "occ_anomaly",
+    "typical_congestion_30",
+    "speed_delta_2",
+    "flow",
+    "down_minus_here",
+    "up_minus_here",
+    "tod_sin",
+    "tod_cos",
+    "dow",
+    "pm",
+    "onramp_flow_up",
+    "offramp_flow_down",
+    "jam_distance_down",
+    "min_speed_down_anomaly",
+    "jam_distance_change_10",
+    "speed",
+    "occupancy",
+    "speed_delta_1",
+    "speed_delta_3",
+    "upstream_speed_delta_1",
+    "upstream_speed_delta_2",
+    "upstream_speed_delta_3",
+    "downstream_speed_delta_1",
+    "downstream_speed_delta_2",
+    "upstream_distance_miles",
+    "slow_last_30",
+    "minutes_since_slow",
+    "speed_lag_30"
+  ],
+  "training_cap": 2000000,
+  "sample_seed": 0,
+  "model_seed": 42,
+  "lookback": 24,
+  "fixed_epochs": 10,
+  "batch_size": 256,
+  "learning_rate": 0.001,
+  "weight_decay": 0.01,
+  "model_parameters": {
+    "d_model": 64,
+    "nhead": 4,
+    "num_layers": 2,
+    "d_ff": 128,
+    "dropout": 0.1
+  },
+  "device": "cpu",
+  "folds": [
+    "2024-01 to 2024-03",
+    "2024-04 to 2024-06",
+    "2024-07 to 2024-09",
+    "2024-10 to 2024-12",
+    "2025-01 to 2025-03",
+    "2025-04 to 2025-06"
+  ],
+  "holdout_start": "2025-07-01",
+  "holdout_loaded": false,
+  "data_dir_read_only": "/home/alexk/projects/erdos_data_science/fall-2026-safeflow/Data",
+  "source_hashes": {
+    "safeflow_features.py": "0c1fff5e99aeacb9f7f9d0f5cbfcefba0da759329519f85f7e129abcdcd018e4",
+    "safeflow_transformer.py": "fce12ef6170963dfb070f29a65418c683744aa88346f3eb25bc9ab269aa6082d",
+    "build_history_windows.py": "3a4ece19cc88543d1e347413704bb0df01e28cc1467f01846f5a445d8d4f0e8f",
+    "transformer_training.py": "4554b4d42d91f01b174dd14761b420a5ebcbf83dc7f411632eced8554056eee3"
+  },
+  "versions": {
+    "torch": "2.14.1",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3"
+  }
+}
