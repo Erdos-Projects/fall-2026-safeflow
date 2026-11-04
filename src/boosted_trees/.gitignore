@@ -1,0 +1,7 @@
+# Publish the full-run validation predictions and their manifest, even if a global gitignore excludes
+# results folders, parquet files or manifests (this file takes precedence over global ignore rules).
+!results/
+!results/*_full_*/
+!results/*_full_*/20??-??/
+!results/*_full_*/20??-??/validation_predictions.parquet
+!results/*_full_*/manifest.json

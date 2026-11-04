@@ -1,0 +1,223 @@
+{
+  "model": "boosted_trees",
+  "status": "complete",
+  "quick_run": false,
+  "run_dir": "boosted_trees_29_features_full_20261104_000723",
+  "features": [
+    "speed_anomaly",
+    "occ_anomaly",
+    "typical_congestion_30",
+    "speed_delta_2",
+    "flow",
+    "down_minus_here",
+    "up_minus_here",
+    "tod_sin",
+    "tod_cos",
+    "dow",
+    "pm",
+    "onramp_flow_up",
+    "offramp_flow_down",
+    "jam_distance_down",
+    "min_speed_down_anomaly",
+    "jam_distance_change_10",
+    "speed",
+    "occupancy",
+    "speed_delta_1",
+    "speed_delta_3",
+    "upstream_speed_delta_1",
+    "upstream_speed_delta_2",
+    "upstream_speed_delta_3",
+    "downstream_speed_delta_1",
+    "downstream_speed_delta_2",
+    "upstream_distance_miles",
+    "slow_last_30",
+    "minutes_since_slow",
+    "speed_lag_30"
+  ],
+  "feature_sha256": "fa4e751633a62111b7fecf0af3d42ccf8eac22bef62cdd81d56f4dda1109cfda",
+  "shared_code_sha256": "09fee9268cfabcd7a9db64a86a7759f082eac6a14e2c51b2d85578ab982803fd",
+  "training_code_sha256": "aaab107ad5708d3a5f83e249df185afb1473cb00ba68fd7857e64247ec04286a",
+  "model_class": "sklearn.ensemble.HistGradientBoostingClassifier",
+  "model_parameters": {
+    "categorical_features": "from_dtype",
+    "class_weight": null,
+    "early_stopping": false,
+    "interaction_cst": null,
+    "l2_regularization": 0.0,
+    "learning_rate": 0.05,
+    "loss": "log_loss",
+    "max_bins": 255,
+    "max_depth": null,
+    "max_features": 1.0,
+    "max_iter": 300,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 50,
+    "monotonic_cst": null,
+    "n_iter_no_change": 10,
+    "random_state": 0,
+    "scoring": "loss",
+    "tol": 1e-07,
+    "validation_fraction": 0.1,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "model_factory_source": "def make_model(**parameters):\n    \"\"\"A new, unfitted model. Handles blanks (NaN) natively, so no imputing or scaling. dow goes in as the number 0-4.\"\"\"\n    return HistGradientBoostingClassifier(**parameters)\n",
+  "model_seed": 0,
+  "train_sample": 2000000,
+  "sample_seed": 0,
+  "sample_method": "pandas sample(train_sample, random_state=sample_seed) over training rows with y_known, order kept",
+  "train_start": "2023-01-01",
+  "validation_quarters": [
+    [
+      "2024-01-01",
+      "2024-04-01"
+    ],
+    [
+      "2024-04-01",
+      "2024-07-01"
+    ],
+    [
+      "2024-07-01",
+      "2024-10-01"
+    ],
+    [
+      "2024-10-01",
+      "2025-01-01"
+    ],
+    [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    [
+      "2025-04-01",
+      "2025-07-01"
+    ]
+  ],
+  "gap_days": 7,
+  "holdout_start": "2025-07-01",
+  "holdout_loaded": false,
+  "forecast_minutes": 30,
+  "slow_mph": 40,
+  "alert_threshold": 0.5,
+  "min_lead_minutes": 15,
+  "export_columns": [
+    "station",
+    "timestamp",
+    "date",
+    "fold",
+    "y",
+    "y_known",
+    "congested_now",
+    "real",
+    "onset",
+    "probability"
+  ],
+  "expected_fold_names": [
+    "2024-01 to 2024-03",
+    "2024-04 to 2024-06",
+    "2024-07 to 2024-09",
+    "2024-10 to 2024-12",
+    "2025-01 to 2025-03",
+    "2025-04 to 2025-06"
+  ],
+  "folds": [
+    {
+      "name": "2024-01 to 2024-03",
+      "directory": "2024-01",
+      "validation_first": "2024-01-02 06:00:00",
+      "validation_last": "2024-03-29 19:55:00",
+      "training_last_window_end": "2023-12-22 20:25:00",
+      "training_rows_available": 822976,
+      "training_rows_used": 822976,
+      "validation_rows": 479136,
+      "validation_rows_known": 324962,
+      "onsets": 1706,
+      "validation_rows_sha256": "00a3b7627c149fdd653daf3cb59c3fb29d64f70d273470b0c9fe15a822894899",
+      "ap_onsets": 0.761358
+    },
+    {
+      "name": "2024-04 to 2024-06",
+      "directory": "2024-04",
+      "validation_first": "2024-04-01 06:00:00",
+      "validation_last": "2024-06-28 19:55:00",
+      "training_last_window_end": "2024-03-22 20:25:00",
+      "training_rows_available": 1142237,
+      "training_rows_used": 1142237,
+      "validation_rows": 486864,
+      "validation_rows_known": 295189,
+      "onsets": 1453,
+      "validation_rows_sha256": "a1327b1ae52f9623694936bd3c384cf09da3e9fdfc8c7e1ea440e589a5ca58ee",
+      "ap_onsets": 0.783733
+    },
+    {
+      "name": "2024-07 to 2024-09",
+      "directory": "2024-07",
+      "validation_first": "2024-07-01 06:00:00",
+      "validation_last": "2024-09-30 19:55:00",
+      "training_last_window_end": "2024-06-21 20:25:00",
+      "training_rows_available": 1441817,
+      "training_rows_used": 1441817,
+      "validation_rows": 494592,
+      "validation_rows_known": 278277,
+      "onsets": 1491,
+      "validation_rows_sha256": "a327f50a5cda67893f00cce741e369303cb7b222a7173d9a85165e9635649f7e",
+      "ap_onsets": 0.757394
+    },
+    {
+      "name": "2024-10 to 2024-12",
+      "directory": "2024-10",
+      "validation_first": "2024-10-01 06:00:00",
+      "validation_last": "2024-12-31 19:55:00",
+      "training_last_window_end": "2024-09-23 20:25:00",
+      "training_rows_available": 1716532,
+      "training_rows_used": 1716532,
+      "validation_rows": 479136,
+      "validation_rows_known": 267560,
+      "onsets": 1546,
+      "validation_rows_sha256": "f90c3a1eeeeedea4e2741b18210abde796ddeb44f446cd1b852f2f05aac97cbb",
+      "ap_onsets": 0.775189
+    },
+    {
+      "name": "2025-01 to 2025-03",
+      "directory": "2025-01",
+      "validation_first": "2025-01-02 06:00:00",
+      "validation_last": "2025-03-31 19:55:00",
+      "training_last_window_end": "2024-12-24 20:25:00",
+      "training_rows_available": 1992536,
+      "training_rows_used": 1992536,
+      "validation_rows": 471408,
+      "validation_rows_known": 289380,
+      "onsets": 1561,
+      "validation_rows_sha256": "1162834e88b3d9030f5c24ae7dd0d05b231b30490bb160553ba33af5a1e5285d",
+      "ap_onsets": 0.75517
+    },
+    {
+      "name": "2025-04 to 2025-06",
+      "directory": "2025-04",
+      "validation_first": "2025-04-01 06:00:00",
+      "validation_last": "2025-06-30 19:55:00",
+      "training_last_window_end": "2025-03-24 20:25:00",
+      "training_rows_available": 2273133,
+      "training_rows_used": 2000000,
+      "validation_rows": 486864,
+      "validation_rows_known": 301433,
+      "onsets": 1536,
+      "validation_rows_sha256": "5faea3f9424053a4829e376837c16c919c3dc0b5c1908f3c0401f42081d63fec",
+      "ap_onsets": 0.766909
+    }
+  ],
+  "data": {
+    "files": 651,
+    "first": "d12_text_station_5min_2023_01_02.parquet",
+    "last": "d12_text_station_5min_2025_06_30.parquet",
+    "sha256": "b59d4b77a7769339cae264d54a02f2243e3e68bbfa7c9b8d11eedaf7e4518730",
+    "metadata_sha256": "b04653604a08aec8018a977f3c2d109a6c8cff47779e70c3cd5da809fabe1ff2"
+  },
+  "versions": {
+    "python": "3.13.16",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "sklearn": "1.9.1"
+  },
+  "completed_at": "2026-11-04T00:13:08"
+}
