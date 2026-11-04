@@ -1,0 +1,75 @@
+{
+  "models_analyzed": [
+    "Timetable",
+    "Random Forest"
+  ],
+  "pending": [
+    {
+      "model": "Transformer",
+      "status": "pending prediction export"
+    },
+    {
+      "model": "Boosted trees (29)",
+      "status": "pending prediction export"
+    }
+  ],
+  "input_provenance": {
+    "Random Forest": {
+      "files": [
+        "C:\\Erdos\\Project\\safeflow\\src\\random_forest\\results\\random_forest_shared_29_features_full_20261031_200713_030817\\2024-01\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\random_forest\\results\\random_forest_shared_29_features_full_20261031_200713_030817\\2024-04\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\random_forest\\results\\random_forest_shared_29_features_full_20261031_200713_030817\\2024-07\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\random_forest\\results\\random_forest_shared_29_features_full_20261031_200713_030817\\2024-10\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\random_forest\\results\\random_forest_shared_29_features_full_20261031_200713_030817\\2025-01\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\random_forest\\results\\random_forest_shared_29_features_full_20261031_200713_030817\\2025-04\\validation_predictions.parquet"
+      ],
+      "probability_column": "probability",
+      "sha256": [
+        "cbff7bfd85688f8506cd9e39f39c58aa2a598f959d66d7f39be123848a7875d1",
+        "aa462cb465228924219f0e48cb6c67a652fc50076c83bc6d2479d390be9978d7",
+        "f2d4a926a92647e60a6ccfc83270e37652c7ceeb66248a5d217197ccf668adfe",
+        "0c3422ea7dc1bb94a616f554ff5df1fb2a6380b6db0877b565a810182ff27074",
+        "1f0635cda9cb8cca6f7416f77a90b2776ea945929fb568c970e9ff46ea1fdf7b",
+        "9f93d06425c9f29e22c88db8fa3e46946cb7d937cb61f9ee2ef0a2eaa3c04ea3"
+      ]
+    }
+  },
+  "shared_code_sha256": "09fee9268cfabcd7a9db64a86a7759f082eac6a14e2c51b2d85578ab982803fd",
+  "context_signature": "915ad346a57c2a4576e38652b6329cc792af972487ac8cc319f06c9677d9ce30",
+  "episode_budget": 20,
+  "hours_budget": 4,
+  "recurrence_cuts": [
+    0.1,
+    0.4
+  ],
+  "validation_rows": 2898000,
+  "onsets": 9293,
+  "classified_onsets": 9253,
+  "unclassified_onsets": 40,
+  "min_lead_minutes": 15,
+  "source": "saved validation predictions; no retraining",
+  "holdout_used": false,
+  "threshold_selection": "exact breakpoints, pooled development; not independent evaluation",
+  "shared_scorer_verification": [
+    {
+      "model": "Timetable",
+      "budget_type": "episodes",
+      "exact_matches_shared_scorer": true
+    },
+    {
+      "model": "Timetable",
+      "budget_type": "duration",
+      "exact_matches_shared_scorer": true
+    },
+    {
+      "model": "Random Forest",
+      "budget_type": "episodes",
+      "exact_matches_shared_scorer": true
+    },
+    {
+      "model": "Random Forest",
+      "budget_type": "duration",
+      "exact_matches_shared_scorer": true
+    }
+  ]
+}

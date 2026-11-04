@@ -1,0 +1,17 @@
+budget_type,group,model,onsets,caught_15min
+episodes,non-recurrent,Timetable,1308,0.0
+episodes,non-recurrent,Random Forest,1308,0.0
+episodes,occasional,Timetable,2072,0.017857142857142856
+episodes,occasional,Random Forest,2072,0.017857142857142856
+episodes,recurrent,Timetable,5873,0.9054997445939043
+episodes,recurrent,Random Forest,5873,0.4120551677166695
+episodes,all classified,Timetable,9253,0.578731222306279
+episodes,all classified,Random Forest,9253,0.26553550199935155
+duration,non-recurrent,Timetable,1308,0.0
+duration,non-recurrent,Random Forest,1308,0.017584097859327217
+duration,occasional,Timetable,2072,0.0
+duration,occasional,Random Forest,2072,0.13754826254826255
+duration,recurrent,Timetable,5873,0.5319257619615189
+duration,recurrent,Random Forest,5873,0.71139111186787
+duration,all classified,Timetable,9253,0.33762023127634283
+duration,all classified,Random Forest,9253,0.4848157354371555

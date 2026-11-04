@@ -1,6 +1,8 @@
 # Operational comparison protocol
 
-The current development exports contain predictions but no fitted Transformer or boosted-tree checkpoints. `model_decision_analysis.ipynb` audits this explicitly. Prediction Parquet size and architectural input counts must not be reported as model memory or speed measurements.
+The historical development exports audited in the model decision analysis contain predictions but no original fitted Transformer or boosted-tree checkpoints. `model_decision_analysis.ipynb` audits this explicitly. Prediction Parquet size and architectural input counts must not be reported as model memory or speed measurements.
+
+The [fresh local benchmark](../../results/local_model_benchmark/20261104_115016_080613/manifest.json) is complete for all three models; its new checkpoints and operational measurements are separate from those historical exports.
 
 ## Fresh local comparison
 

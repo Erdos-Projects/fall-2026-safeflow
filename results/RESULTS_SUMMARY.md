@@ -4,7 +4,7 @@
 
 At each station, every five minutes, predict whether measured speed will fall below **40 mph at any point in the next 30 minutes**. This page is a working overview of the repository's results, with completed evidence separated from pending work.
 
-> **In progress - 2026-11-04 13:03 EST.** Six-fold development comparison and forward warning-policy analysis are complete. The local Transformer benchmark is training (4/10 epochs complete); its validation and operational measurements are pending. **The July-December 2025 holdout remains untouched.**
+> **Development snapshot - 2026-11-04 15:09 EST.** The full local benchmark is complete for all three models, including all ten Transformer epochs and checkpoint reproduction checks. **The July-December 2025 holdout remains untouched.**
 
 [Training and notebook guide](../notebooks/README.md) | [Project setup](../README.md) | [Published metrics](../notebooks/results/summary.csv) | [Detailed tables and methods](#detailed-tables-and-methods)
 
@@ -46,19 +46,25 @@ Under the duration policy, Transformer caught only **4.9%** of non-recurrent ons
 
 [Recurrence results](forward_warning_budget_validation/20261104_102956_926783/recurrence_summary.csv) | [Error-analysis notebook](../notebooks/analysis/error_analysis_models.ipynb)
 
-## 5. Deployment practicality: local benchmark in progress
+## 5. Deployment practicality: completed local benchmark
 
-![Completed local Random Forest and boosted-tree training time, batch latency and inference memory measurements](figures/summary/local_benchmark_partial.png)
+![Completed local training, batch inference and process memory comparison](figures/summary/local_benchmark.png)
 
-These are **fresh full-size fits on the same last development fold**, with four CPU threads, 2,000,000 training endpoints and 486,864 validation endpoints. Boosted trees were about **5.1 times faster for fit/predict/save** than Random Forest. Both checkpoints reproduced saved predictions. The Transformer cost comparison remains pending; the figure does not display missing measurements as zero.
+| Model | Last-fold AP | Fit/predict/save | Batch 46 median | Inference peak RSS |
+| --- | --- | --- | --- | --- |
+| Random Forest | 0.7509 | 4.10 min | 47.83 ms | 368.9 MiB |
+| Boosted trees | 0.7669 | 0.81 min | 3.02 ms | 296.4 MiB |
+| Transformer | 0.7713 | 130.01 min | 2.39 ms | 486.9 MiB |
 
-Batch latency includes batch construction and model execution from cached engineered features. Peak RSS includes process dependencies, fixture data and optional stress tests. Raw-to-feature computation is excluded from per-model inference timing. Timing reflects this machine and its background load, with one training fit and repeated warm inference batches per model.
+Transformer has the highest AP in this fresh last-fold run and the lowest warm small-batch latency. Its fit/predict/save stage took about **130 minutes**, versus **0.81 minutes** for boosted trees and **4.10 minutes** for Random Forest. Boosted trees were faster over the complete 38,640-endpoint fixture: **0.50 seconds**, versus **2.03 seconds** for Transformer and **4.00 seconds** for Random Forest. Inference speed therefore depends on batch size and whether encoding/building costs are included.
 
-[Local benchmark notebook](../notebooks/analysis/local_model_benchmark.ipynb) | [Run provenance](local_model_benchmark/20261104_115016_080613/manifest.json) | [Operational protocol](../src/analysis/operational_benchmark_protocol.md)
+These are fresh one-fold results, not replacements for the six-fold published means or the earlier forward policies. At threshold 0.5, Transformer's higher early catch also came with greater warning burden. Small-batch latency starts from cached engineered features; raw-to-feature extraction is excluded. Peak RSS includes dependencies, fixture data and optional stress tests. No holdout data was used.
+
+[Completed benchmark tables](local_model_benchmark/20261104_115016_080613/manifest.json) | [Benchmark notebook](../notebooks/analysis/local_model_benchmark.ipynb)
 
 ## Current decision and next steps
 
-Keep **Transformer and boosted trees as finalists**. Complete the local Transformer benchmark, compare detection and actual warning burden together with deployment cost, and investigate non-recurrent congestion. The optional missing-feature tests are diagnostics, not causal raw-detector outage simulations. Freeze the final model and threshold-calibration procedure before accessing the holdout.
+Keep **Transformer and boosted trees as finalists**. Use the completed local measurements to compare detection and actual warning burden together with deployment cost, and investigate non-recurrent congestion. The optional missing-feature tests are diagnostics, not causal raw-detector outage simulations. Freeze the final model and threshold-calibration procedure before accessing the holdout.
 
 ## Detailed tables and methods
 
@@ -140,63 +146,50 @@ Recurrence is determined from the fold-specific, training-only usual congestion 
 
 Small improvements in aggregate AP should not obscure this weakness. A model can rank imminent slowdowns well and still fail to warn of an unusual onset early enough. Source: [recurrence table](forward_warning_budget_validation/20261104_102956_926783/recurrence_summary.csv).
 
-## Current local benchmark: completed results and pending work
+## Completed local benchmark: full last development fold
 
-Run: [`20261104_115016_080613`](local_model_benchmark/20261104_115016_080613/manifest.json). This is a **full fresh-fit** benchmark in `erdos_ds_environment`, using the current shared feature implementation, four CPU threads per worker, the same 2,000,000 training endpoints, and the same 486,864 validation endpoints from April-June 2025. Training and inference use separate subprocesses. Inference uses 38,640 common endpoints from the first five evaluated days, 20 warm-up batches and 200 measured batches for batch sizes 1 and 46.
-
-The run-level manifest remains `prepared` until all worker stages and aggregate tables finish; the completed model-specific JSON files establish the measured results below. This snapshot does not imply the entire run is complete.
+Run: [`20261104_115016_080613`](local_model_benchmark/20261104_115016_080613/manifest.json). Status: **complete**. All three models used the current shared features, 2,000,000 common training endpoints, 486,864 validation endpoints, and four CPU threads. The inference fixture contains 38,640 endpoints from five development days; timings use 20 warmups and 200 measured batches. There are 1,536 onsets in the full validation fold.
 
 | Model | Fit + predict + save (s) | Fixture prediction (s) | Batch 1 median (ms) | Batch 46 median (ms) | Checkpoint (MiB) | Inference peak RSS (MiB) |
 | --- | --- | --- | --- | --- | --- | --- |
-| Random Forest | 245.92 | 3.995 | 38.25 | 47.83 | 19.886 | 368.9 |
-| Boosted trees | 48.45 | 0.499 | 2.85 | 3.02 | 0.473 | 296.4 |
-| Transformer | Pending | Pending | Pending | Pending | Pending | Pending |
+| Random Forest | 245.92 | 3.995 | 38.246 | 47.827 | 19.886 | 368.9 |
+| Boosted trees | 48.45 | 0.499 | 2.850 | 3.015 | 0.473 | 296.4 |
+| Transformer | 7800.38 | 2.033 | 0.493 | 2.391 | 0.285 | 486.9 |
 
-Batch latencies include batch construction and model execution with engineered feature encoding already cached. Fixture prediction includes model-specific encoding, batch construction and prediction; raw-measurement-to-engineered-feature extraction is excluded. Peak RSS is absolute fresh inference-process memory, including dependencies, fixture data, encoded cache and optional stress tests, not just model weights. Measurements are from a single fit per model with repeated warm inference batches, under the actual background load on this machine.
+Transformer has the highest AP in this fresh last-fold run and the lowest warm small-batch latency. Its fit/predict/save stage took about **130 minutes**, versus **0.81 minutes** for boosted trees and **4.10 minutes** for Random Forest. Boosted trees were faster over the complete 38,640-endpoint fixture: **0.50 seconds**, versus **2.03 seconds** for Transformer and **4.00 seconds** for Random Forest. Inference speed therefore depends on batch size and whether encoding/building costs are included.
 
-Both completed checkpoints passed reproduction: maximum absolute probability error was approximately 5.6e-16 for Random Forest and zero for boosted trees. Boosted trees were about 5.1 times faster for fit/predict/save and 8.0 times faster for fixture prediction than Random Forest in this run. These ratios do not yet compare Transformer.
+All three checkpoints reproduced saved probabilities within tolerance (RF maximum error about 5.6e-16; boosted trees and Transformer zero). Transformer has the smallest serialized checkpoint here, but the largest fresh inference-process peak RSS. Serialized weights do not measure total deployment memory.
 
 ### Fresh local predictive metrics: last fold only
 
-| Model | AP on eligible origins | Early catch at 0.5 | False episodes/day at 0.5 | Wrong-alert hours/day at 0.5 |
+| Model | AP on eligible origins | Early catch at 0.5 | False episodes/day at 0.5 | Wrong hours/day at 0.5 |
 | --- | --- | --- | --- | --- |
 | Random Forest | 0.7509 | 49.9% | 29.10 | 4.15 |
 | Boosted trees | 0.7669 | 60.9% | 30.29 | 4.60 |
-| Transformer | Pending | Pending | Pending | Pending |
+| Transformer | 0.7713 | 66.8% | 30.98 | 5.17 |
 
-These are **one-fold fresh-fit metrics**, not six-fold means. They must not be substituted for the published comparison or treated as matched-warning-burden results. The local run deliberately uses the current shared source and common endpoint order; exact reproduction of historical fitted models is not expected.
+These are fresh one-fold results, not replacements for the six-fold published means or the earlier forward policies. At threshold 0.5, Transformer's higher early catch also came with greater warning burden. Small-batch latency starts from cached engineered features; raw-to-feature extraction is excluded. Peak RSS includes dependencies, fixture data and optional stress tests. No holdout data was used.
 
-### Transformer training progress
+### Transformer training and missing-feature diagnostics
 
-At this snapshot, **4 of 10 epochs** have completed, taking **53.9 minutes of recorded epoch execution**. Validation predictions, checkpoint reproduction and operational measurements remain pending. Training loss is not validation performance.
+All **10 epochs** finished, with training BCE decreasing from 0.0813 to 0.0709. Recorded epoch execution totaled 129.4 minutes; the complete fit/predict/save stage took 130.0 minutes. Training loss is not validation AP.
 
-| Epoch | Training BCE | Epoch duration (min) |
-| --- | --- | --- |
-| 1 | 0.0813 | 14.23 |
-| 2 | 0.0771 | 13.40 |
-| 3 | 0.0755 | 12.97 |
-| 4 | 0.0744 | 13.30 |
+All three workers also completed nine missing-feature scenarios each, alongside clean predictions: **30 scenario rows** in [feature_stress.csv](local_model_benchmark/20261104_115016_080613/feature_stress.csv). These mask feature families at 11:00 for 5/15/30 minutes while keeping labels fixed; they are diagnostics on five days, not causal raw-detector outage simulations.
 
-The current fixed full settings are 300 Random Forest trees, 300 boosted-tree iterations, and ten Transformer epochs with 24 historical vectors. The original Transformer export recorded a different shared-feature source hash; these fresh local fits avoid attributing new operational measurements to that historical checkpoint. Historical prediction comparisons remain subject to that provenance caveat.
-
-### Missing-feature diagnostics
-
-Completed tree-model workers also ran nine scenarios masking current/upstream/downstream engineered-feature families for 5/15/30 minutes at 11:00 on each fixture day. Labels and the 0.5 threshold stay fixed. These are missing-feature diagnostics, **not causal detector-outage simulations**: every dependent feature is not recomputed from perturbed raw measurements. Transformer diagnostics and the aggregate cross-model comparison remain pending. See the [operational benchmark protocol](../src/analysis/operational_benchmark_protocol.md).
-
-Sources: [local benchmark notebook](../notebooks/analysis/local_model_benchmark.ipynb), [worker configuration](local_model_benchmark/20261104_115016_080613/worker_config.json), [RF inference measurements](../src/random_forest/results/local_benchmark_20261104_115016_080613/2025-04/inference_benchmark.json), [boosted-tree inference measurements](../src/boosted_trees/results/local_benchmark_20261104_115016_080613/2025-04/inference_benchmark.json), [Transformer training history](../src/transformer/results/local_benchmark_20261104_115016_080613/2025-04/training_history.csv). Fitted models and fixtures are local artifacts and may be Git-ignored.
+Sources: [training](local_model_benchmark/20261104_115016_080613/training.csv), [inference and reproduction](local_model_benchmark/20261104_115016_080613/inference.csv), [latency](local_model_benchmark/20261104_115016_080613/latency.csv), [predictive metrics](local_model_benchmark/20261104_115016_080613/predictive_metrics.csv), and [executed notebook](../notebooks/analysis/local_model_benchmark.ipynb). Large fitted models and fixtures remain local. The original Transformer provenance mismatch still applies to historical exports; these new fits use the current shared source.
 
 ## What remains before a final model decision
 
-1. Complete the Transformer local fit and all inference/reproduction/feature-stress checks, then refresh this snapshot with the aggregate benchmark tables and plots.
+1. Compare the completed last-fold predictive and operational results together, while preserving the distinction from six-fold and forward-policy estimates.
 2. Compare fresh last-fold detection and actual burden together with latency, training cost and memory. A small AP or detection difference alone is not a decisive deployment argument.
 3. Investigate non-recurrent congestion and run causal raw-detector outage tests if outage robustness is part of the intended deployment claim.
 4. Freeze the final feature source, model-fitting dates, threshold-calibration procedure and primary reporting metrics before evaluating the untouched July-December 2025 holdout. Do not tune on that holdout afterward.
 
-**Current conclusion:** keep Transformer and boosted trees as the leading candidates. Transformer has favorable early-warning development evidence under the selected duration policy; boosted trees have the best published mean AP and strong completed local efficiency measurements. A final operational comparison awaits the Transformer benchmark.
+**Current conclusion:** keep Transformer and boosted trees as the leading candidates. Transformer has favorable early-warning development evidence under the selected duration policy; boosted trees have the best published mean AP and strong completed local efficiency measurements. The local benchmark now quantifies their training and inference tradeoffs; a final choice still requires the frozen evaluation protocol.
 
 
 </details>
 
 ---
 
-*Static work-in-progress snapshot. Figures are stored alongside this page for GitHub rendering. [Figure provenance](figures/summary/manifest.json) records their source artifacts. The full-run notebook will produce its aggregate tables after all models finish; this cover page must then be refreshed.*
+*Static work-in-progress snapshot. Figures are stored alongside this page for GitHub rendering. [Figure provenance](figures/summary/manifest.json) records their source artifacts. The completed full-run notebook and aggregate tables are linked above. This remains a developmental project snapshot, not a holdout report.*

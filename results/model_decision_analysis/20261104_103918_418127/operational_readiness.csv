@@ -1,0 +1,3 @@
+model,run,checkpoints,checkpoint_bytes,logical_features,encoded_channels,history_vectors,max_input_values,inference_benchmark,missing_input_benchmark,required_artifact
+Transformer,src\transformer\results\transformer_29_features_20261031_085746_133888,0,,29,46,24,1104,not measured: fitted checkpoint absent,not measured,"model.pt (includes weights, architecture and preprocessing)"
+Boosted trees (29),src\boosted_trees\results\boosted_trees_29_features_full_20261104_000723,0,,29,29,1,29,not measured: fitted checkpoint absent,not measured,model.joblib plus exact ordered features

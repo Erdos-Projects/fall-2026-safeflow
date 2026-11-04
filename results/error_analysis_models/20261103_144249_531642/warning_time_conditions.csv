@@ -1,0 +1,11 @@
+condition,onsets,caught_15min,model,factor
+40–<50 mph,5265,0.5878442545109211,Timetable,speed band
+50–<60 mph,3422,0.608708357685564,Timetable,speed band
+60+ mph,566,0.3127208480565371,Timetable,speed band
+detected,5400,0.6446296296296297,Timetable,downstream jam
+not detected,3853,0.48637425382818583,Timetable,downstream jam
+40–<50 mph,5265,0.3813865147198481,Random Forest,speed band
+50–<60 mph,3422,0.1282875511396844,Random Forest,speed band
+60+ mph,566,0.0176678445229682,Random Forest,speed band
+detected,5400,0.3348148148148148,Random Forest,downstream jam
+not detected,3853,0.1684401764858552,Random Forest,downstream jam

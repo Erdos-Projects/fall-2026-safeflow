@@ -1,0 +1,2 @@
+model,source,epoch_records,epoch_seconds_sum,comparable_hardware,scope
+Transformer,saved train_transformer.ipynb stdout,60,17425.7,False,historical epoch time only; no matched boosted timing

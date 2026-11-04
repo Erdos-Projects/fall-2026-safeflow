@@ -1,7 +1,7 @@
 {
   "updated_at": "2026-11-04 13:01 EST",
   "holdout_used": false,
-  "local_benchmark_status": "in progress",
+  "local_benchmark_status": "complete",
   "sources": [
     {
       "path": "notebooks/results/summary.csv",
@@ -34,6 +34,30 @@
     {
       "path": "results/local_model_benchmark/20261104_115016_080613/partial_completed_models_snapshot.csv",
       "sha256": "0c60b17324f2e80db72e1f27c743d25097e963c36f10679ce640c0263e79d33a"
+    },
+    {
+      "path": "results/local_model_benchmark/20261104_115016_080613/manifest.json",
+      "sha256": "07af7786ae4c1c8b2a4858b99dbd18a8cea5c851dc289ec6f6c145b1b457b8a7"
+    },
+    {
+      "path": "results/local_model_benchmark/20261104_115016_080613/training.csv",
+      "sha256": "e1635bf8ae4ef71dc344f2d225a9f018078209a1d652a230fe3686ac70a33f4c"
+    },
+    {
+      "path": "results/local_model_benchmark/20261104_115016_080613/inference.csv",
+      "sha256": "af854df090fb417715bfca9f29858b1ce28374dc564896d935cd50dd55ead5a2"
+    },
+    {
+      "path": "results/local_model_benchmark/20261104_115016_080613/latency.csv",
+      "sha256": "7f3b593a73ec248c59a8ee6866c5207e9286b8fccdd344b29219d8c456792393"
+    },
+    {
+      "path": "results/local_model_benchmark/20261104_115016_080613/predictive_metrics.csv",
+      "sha256": "b8d93d7295359b7a05be6781681438a9f516e6264e6cffe390b7d3f26b725918"
+    },
+    {
+      "path": "results/local_model_benchmark/20261104_115016_080613/feature_stress.csv",
+      "sha256": "8c21ac60979de99349ea338ec3cf95af9ff117c5cf9d6a0bb39f9289b5246eab"
     }
   ],
   "figures": {
@@ -41,8 +65,9 @@
     "forward_warning_budget.png": "Copied unchanged from completed forward validation",
     "paired_uncertainty.png": "Primary duration-policy weekly paired intervals",
     "recurrence.png": "Forward duration-policy group detection; unknown recurrence excluded from groups",
-    "local_benchmark_partial.png": "Two completed local model benchmarks only"
+    "local_benchmark_partial.png": "Historical two-model snapshot, superseded by local_benchmark.png",
+    "local_benchmark.png": "Completed all-model local benchmark: training.csv, latency.csv, inference.csv"
   },
-  "page_updated_at": "2026-11-04 13:03 EST",
-  "transformer_completed_epochs": 4
+  "page_updated_at": "2026-11-04 15:09 EST",
+  "transformer_completed_epochs": 10
 }

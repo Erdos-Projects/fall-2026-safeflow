@@ -1,0 +1,4 @@
+model,quick,worker_pid,threads,device,load_seconds,fit_predict_save_seconds,fit_seconds,scope,baseline_rss_bytes,rss_bytes,peak_rss_bytes
+random_forest,False,9676,4,cpu,0.2954061001073569,245.91724129999056,238.37049810006283,fit plus validation prediction and artifact save; data load separate,166621184,681185280,2788241408
+boosted_trees,False,54932,4,cpu,0.3041276999283582,48.446404900169,43.32226640009321,fit plus validation prediction and artifact save; data load separate,166666240,680001536,2535432192
+transformer,False,15192,4,cpu,0.2890832000412047,7800.379298100015,,fit plus validation prediction and artifact save; data load separate,259051520,380735488,1996058624
