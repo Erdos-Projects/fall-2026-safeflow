@@ -1,8 +1,8 @@
 # Random Forest with the shared 29 features
 
-Run `notebooks/train_random_forest.ipynb` from the project root or `notebooks/`.
+Run `notebooks/archive/training/train_random_forest.ipynb` from the project root or `notebooks/`.
 Use `QUICK_RUN = True` for the last-fold smoke test, then `False` for the complete
-six-quarter walk-forward experiment. `notebooks/analysis/random_forest_results.ipynb`
+six-quarter walk-forward experiment. `notebooks/archive/analysis/random_forest_results.ipynb`
 reloads completed results and draws the comparison charts without retraining.
 
 The shared module remains `notebooks/safeflow_features.py`; no model-specific

@@ -1,0 +1,6 @@
+{
+  "scope": "48 fixed April-June development endpoints with causal historical context; no new holdout sampling",
+  "feature_frame_sha256": "9b1181c09f32473d06d66ebfce62b64914db1d185de7530d18dc7880f4b892dc",
+  "labels": "Targets are carried for compatibility but are not model inputs",
+  "selection": "48 evenly spaced original fixture endpoints"
+}

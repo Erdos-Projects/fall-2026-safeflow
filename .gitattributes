@@ -1,0 +1,26 @@
+# Preserve the bytes used by release and source-provenance checksums.
+* text=auto eol=lf
+*.py text eol=lf
+*.ipynb text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.txt text eol=lf
+*.parquet -text
+*.npy -text
+*.pt -text
+*.joblib -text
+*.png -text
+*.pdf -text
+*.pptx -text
+*.docx -text
+# Frozen evidence and implementation hashes are over raw bytes. Do not
+# normalize these files: some original artifacts intentionally contain CRLF.
+/results/** -text
+/artifacts/** -text
+/notebooks/** -text
+/src/** -text
+/tests/fixtures/** -text
+/[Dd]ata/** -text

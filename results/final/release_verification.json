@@ -1,0 +1,26 @@
+{
+  "selected_final_model": null,
+  "eda_files_unchanged": true,
+  "eda_sha256": {
+    "notebooks/eda/00_pems_bay_eda.ipynb": "f87f610e5d0d035376a20d53ce30e81c82a8e264ba6bbc90e473b853088d469f",
+    "notebooks/eda/01_data_and_features.ipynb": "1f5deddfb42755f71f9131b238a1f570ccc60c017c577518f2bfbfaa0af323ad",
+    "notebooks/eda/02_eda_pems_framework.ipynb": "7d2374f3f91d77653f35f4369619cd5a76564cabdc300b74e686bf6afd0d9d8a",
+    "notebooks/eda/03_raw_pems_eda_initial.ipynb": "9ef29d48c403e48f357c6266988bdd05dac597ab2f66d5989a1a90cafafe94e2",
+    "notebooks/eda/04_congestion-start-feature-engineering.ipynb": "7b8c17dbb6babcbbabdc1796fdbf5f667e990f8903834df931b4be480b949196",
+    "notebooks/eda/05_congestion-at-specific-sensor.ipynb": "ca64e813ade0190a3245420b65a3acab21f798fe89257fa84a8f2c0a0683fb31"
+  },
+  "test_count": 14,
+  "tests_passed": true,
+  "showcase_executed": true,
+  "checkpoint_probability_and_training_statistics_reproduction": true,
+  "full_size_preparation_hash_matches": {
+    "development_frame.parquet": true,
+    "fixture_rows.npy": true,
+    "inference_fixture.parquet": true,
+    "train_rows.npy": true,
+    "val_rows.npy": true
+  },
+  "raw_fitting_replay_rerun": false,
+  "scope_note": "Existing complete trained models retained; full-size prepared inputs matched byte-for-byte; multi-hour training not repeated for packaging.",
+  "clean_directory_test": "Reporting and all bundles succeeded without raw data or original run directories; recorded environment, not a new environment installation."
+}

@@ -4,9 +4,9 @@
 
 SafeFlow asks whether a traffic station will become congested within the next 30 minutes, and whether that warning can arrive early enough to be useful without generating too many false alerts. We compare tabular tree models with a Transformer using a shared set of traffic, spatial and temporal features.
 
-> **Project status: development, November 2026.** The current comparison uses D12 data. Development validation and forward warning-policy analyses are complete; the full local benchmark is complete. The July-December 2025 holdout has now been evaluated once using frozen checkpoints and development-calibrated thresholds. No final model has been selected.
+> **Project status: development, November 2026.** The current comparison uses D12 data. Development validation and forward warning-policy analyses are complete; the full local benchmark is complete. The July-December 2025 holdout has now been evaluated once using frozen checkpoints and development-calibrated thresholds. This is a comparative study: all three models are retained, with boosted trees and Transformer as leading candidates and no single final model designated.
 
-[Problem](#the-problem) | [Stakeholders](#stakeholders) | [Dataset](#the-dataset) | [Models](#the-models) | [Metrics](#how-performance-is-measured) | [Results](#what-we-have-found) | [Current workflow](#current-workflow-and-planned-delivery)
+[Problem](#the-problem) | [Stakeholders](#stakeholders) | [Warning policies](#warning-policies-and-budgets) | [Dataset](#the-dataset) | [Models](#the-models) | [Metrics](#how-performance-is-measured) | [Results](#what-we-have-found) | [Reproduction](#reproducing-the-study)
 
 ## The problem
 
@@ -19,6 +19,20 @@ Our prediction unit is **one station at one 5-minute timestamp**. The binary tar
 For example, a forecast at 08:00 looks at 08:05 through 08:30. One reading below 40 mph makes the target positive; the 08:00 reading itself is excluded. This definition includes brief slowdowns rather than requiring multiple consecutive congested readings.
 
 We evaluate warning quality separately from this target. An **onset** is a congested reading following at least 30 minutes of measured, uncongested readings. An onset is caught early if a warning occurs **15-30 minutes before it begins**.
+
+## Warning policies and budgets
+
+A **warning policy** turns a probability into an action: issue an alert when the model score is at least a chosen threshold. Each model has its own threshold. For the holdout study, thresholds were chosen using April-June calibration data and then frozen. This is an alerting rule, not a rule for controlling traffic.
+
+A **warning budget** is a target for acceptable false-warning burden used during threshold selection. It is not money and is not a guaranteed limit on future data. These illustrative study targets require stakeholder validation.
+
+| Policy | Calibration target | Shape in the original tradeoff plots |
+| --- | --- | --- |
+| Duration | Maximize early detection with at most 4 wrong-alert hours/day, summed across stations | Circle |
+| Episode | Maximize early detection with at most 20 false-warning episodes/day | Square |
+| Fixed 0.5 | Warn whenever predicted probability reaches 0.5; no budget optimization | Triangle |
+
+One continuous 30-minute false warning is **one episode and 0.5 hours**. Six separated five-minute false warnings are **six episodes and the same 0.5 hours**. The policies control different kinds of burden. Color identifies the model; shape identifies the policy. All models exceeded their intended budgets on holdout, so these are not exactly matched-cost operating points. See [KPI definitions](kpis.md).
 
 ## Stakeholders
 
@@ -64,7 +78,7 @@ All three models use the **same 29 logical features**, implemented in [safeflow_
 | Typical patterns | Training-period congestion rates and speed/occupancy anomalies distinguish expected traffic from unusual conditions |
 | Context | Time of day, weekday, postmile and nearby ramp flows provide temporal and spatial context |
 
-Training-dependent typical values and anomalies are recomputed inside each fold using that fold's training period. The [feature-selection analysis](notebooks/analysis/feature_selection_results.ipynb) documents the development rationale; these features remain subject to the final validation protocol.
+Training-dependent typical values and anomalies are recomputed inside each fold using that fold's training period. The [feature-engineering notes](results/final/development/feature_engineering.md) document the kept, replaced, dropped and later-added inputs. The [feature-selection analysis](notebooks/archive/analysis/feature_selection_results.ipynb) documents the development rationale; these features remain subject to the final validation protocol.
 
 ## The models
 
@@ -119,9 +133,9 @@ Despite its saved name, **`AP, onsets` is a ranking metric over eligible forecas
 
 These frozen models were fitted before April; April-June predictions calibrated their thresholds. They were not refitted through June. All three models exceeded the 4 wrong-alert-hours/day budget on holdout, so the higher detection rates do not establish compliant operation at that cap.
 
-![Holdout probability ranking and monthly AP](results/figures/summary/holdout_ranking.png)
+![Holdout probability ranking with PR and supplementary ROC curves](results/final/figures/holdout_ranking.png)
 
-![Holdout warning tradeoffs under frozen policies](results/figures/summary/holdout_warning_tradeoffs.png)
+![Holdout warning tradeoffs under frozen policies](results/final/figures/holdout_warning_tradeoffs.png)
 
 Transformer's duration-policy detection advantage is 2.34 percentage points (paired weekly 95% interval +1.19 to +3.49), with slightly higher wrong-alert duration. Boosted trees have the highest AP point estimate. These are not exactly matched-cost comparisons. [Full holdout report](results/holdout_evaluation/20261104_160843_077282/HOLDOUT_REPORT.md) and [frozen protocol](results/holdout_evaluation/20261104_160843_077282/frozen_protocol.json).
 
@@ -135,7 +149,7 @@ The development results below retain their original scope and values.
 | Transformer | 0.7625 | 0.0168 | 0.7317 | 0.0223 |
 | Random Forest | 0.7495 | 0.0088 | 0.7384 | 0.0230 |
 
-![Published mean AP and quarterly ranking performance for the three models](results/figures/summary/published_ranking.png)
+![Published mean AP and quarterly ranking performance for the three models](results/final/figures/development_ranking.png)
 
 These are published six-fold development results, including the November 4 boosted-tree update. Whiskers show fold standard deviation, **not confidence intervals**. A higher mean AP does not automatically imply better early event detection. [Source metrics](notebooks/results/summary.csv).
 
@@ -149,27 +163,27 @@ Under the **4 wrong-alert-hours/day calibration policy**, the five forward-evalu
 | Boosted trees | 52.7% | 23.21 | 3.31 | 0/5 |
 | Random Forest | 43.5% | 26.09 | 3.49 | 0/5 |
 
-![Forward-quarter detection and realized burden under episode and duration calibration budgets](results/figures/summary/forward_warning_budget.png)
+![Forward-quarter detection and realized burden under episode and duration calibration budgets](results/final/figures/forward_warning_budget.png)
 
-The dashed lines are calibration budgets, not constraints imposed using future outcomes. The models have equal **intended** budgets, but different realized costs. The episode-budget policy produces a different tradeoff, which is why both episode counts and warning duration are reported. [Forward-policy analysis](notebooks/analysis/forward_warning_budget_validation.ipynb).
+The dashed lines are calibration budgets, not constraints imposed using future outcomes. The models have equal **intended** budgets, but different realized costs. The episode-budget policy produces a different tradeoff, which is why both episode counts and warning duration are reported. [Forward-policy analysis](notebooks/archive/analysis/forward_warning_budget_validation.ipynb).
 
 ### 3. The small detection advantage is uncertain
 
-![Paired weekly confidence intervals for Transformer minus boosted trees under the duration-budget policy](results/figures/summary/paired_uncertainty.png)
+![Paired weekly confidence intervals for Transformer minus boosted trees under the duration-budget policy](results/final/figures/paired_uncertainty.png)
 
 Transformer's early-detection advantage over boosted trees is **0.50 percentage points**, with a weekly 95% interval of **-0.66 to +1.57 points**. This does not clearly distinguish their detection performance or establish equivalence. Transformer generated lower average warning burden under this frozen duration policy.
 
-Intervals use 5,000 paired weekly resamples within quarters, keeping stations together. They condition on the saved fitted models and thresholds; they do not include retraining or feature/model-selection uncertainty. [Paired uncertainty analysis](notebooks/analysis/model_decision_analysis.ipynb).
+Intervals use 5,000 paired weekly resamples within quarters, keeping stations together. They condition on the saved fitted models and thresholds; they do not include retraining or feature/model-selection uncertainty. [Paired uncertainty analysis](notebooks/archive/analysis/model_decision_analysis.ipynb).
 
 ### 4. Non-recurrent congestion is the main predictive weakness
 
-![Early detection by non-recurrent, occasional and recurrent congestion groups](results/figures/summary/recurrence.png)
+![Early detection by non-recurrent, occasional and recurrent congestion groups](results/final/figures/development_recurrence.png)
 
 Among 1,136 non-recurrent onsets, early detection under the duration policy was only **4.9% for Transformer, 3.4% for boosted trees and 1.2% for Random Forest**. Recurrence uses the training-only usual congestion rate 15 minutes before onset; 33 events without usable recurrence context are excluded from the groups but retained in overall detection. Strong aggregate scores do not resolve this weakness.
 
 ### 5. Completed local benchmarking shows different training and inference tradeoffs
 
-![Completed local CPU benchmark for all three models](results/figures/summary/local_benchmark.png)
+![Completed local CPU benchmark for all three models](results/final/figures/operational_benchmark.png)
 
 | Model | Last-fold AP | Fit/predict/save | Batch 46 median | Inference peak RSS |
 | --- | --- | --- | --- | --- |
@@ -181,52 +195,59 @@ Transformer has the highest AP in this fresh last-fold run and the lowest warm s
 
 All models used the same April-June 2025 development fold, two million training endpoints and four CPU threads. All three saved checkpoints passed prediction reproduction checks.
 
-These are fresh one-fold results, not replacements for the six-fold published means or the earlier forward policies. At threshold 0.5, Transformer's higher early catch also came with greater warning burden. Small-batch latency starts from cached engineered features; raw-to-feature extraction is excluded. Peak RSS includes dependencies, fixture data and optional stress tests. No holdout data was used. [Benchmark notebook](notebooks/analysis/local_model_benchmark.ipynb) and [completed run tables](results/local_model_benchmark/20261104_115016_080613/manifest.json).
+These are fresh one-fold results, not replacements for the six-fold published means or the earlier forward policies. At threshold 0.5, Transformer's higher early catch also came with greater warning burden. Small-batch latency starts from cached engineered features; raw-to-feature extraction is excluded. Peak RSS includes dependencies, fixture data and optional stress tests. No holdout data was used. [Benchmark notebook](notebooks/archive/analysis/local_model_benchmark.ipynb) and [completed run tables](results/local_model_benchmark/20261104_115016_080613/manifest.json).
 
-## What remains before a final decision
+## Conclusions and next steps
 
-Transformer and boosted trees remain the leading candidates. The local benchmark is complete. We still need to assess the practical value of their performance differences and improve or better characterize unusual-onset failures.
+All three models are retained; boosted trees and Transformer remain the leading candidates. Neither satisfies the target warning budget on holdout. Both demonstrate the predictive feasibility of our target design, while improvements and retraining require new independent evaluation. This is evidence for further development, not proof of budget-compliant deployment or a promise that retraining will fix the breach.
 
 Current evidence is limited to this D12 corridor and development period; performance on D7 or a combined analysis is not established. The historical Transformer export also records a different shared-feature source hash from the current module. Fresh local fits use the current shared source, but do not establish exact reproduction of that historical run.
 
 The frozen-checkpoint holdout evaluation is complete. Further model or policy tuning requires new independent validation; this same period can no longer serve as an untouched test. The [visual results overview](results/RESULTS_SUMMARY.md) preserves detailed tables, artifact links and the completed local benchmark snapshot.
 
-## Current workflow and planned delivery
+## Reproducing the study
 
-**The current research workflow uses notebooks.** Shared feature construction and reusable model/analysis code already live in Python modules. At project completion, the notebooks will be converted into executable scripts, and this section will be updated with the final script-based usage instructions.
+The active workflow is script-based. EDA notebooks are retained unchanged under `notebooks/eda/`, and [final_results.ipynb](notebooks/final_results.ipynb) is a clean showcase calling the same versioned code. Earlier training and analysis notebooks remain archived, not deleted.
 
-For now:
+Create the recorded CPU environment from the repository root:
 
-1. Place the D12 yearly folders and metadata under `data/` using the structure described above.
-2. Activate the project environment and install the base dependencies:
+```text
+conda env create -f environment.yml
+conda activate safeflow-release
+```
 
-   ```bat
-   conda activate erdos_ds_environment
-   python -m pip install -r requirements.txt
-   ```
+Alternatively install [requirements-lock.txt](requirements-lock.txt) in Python 3.12.14. These pins record the environment used for the evaluated models. Windows launchers add the activated environment's native-library directory for subprocesses.
 
-3. Open a model's training notebook using that environment's kernel: [Random Forest](notebooks/train_random_forest.ipynb), [boosted trees](notebooks/train_boosted_trees.ipynb), or [Transformer](notebooks/train_transformer.ipynb). Use quick mode for pipeline checks before full training. Transformer and local benchmarking additionally require [requirements-benchmark.txt](requirements-benchmark.txt):
+| Command | What it does |
+| --- | --- |
+| `python scripts/generate_report.py` / `make report` | Regenerate final plots and verify nine policy-score rows from packaged predictions; no training or raw data needed |
+| `python scripts/verify_release.py` / `make verify` | Verify all three bundle hashes and checkpoint prediction reproduction on a small packaged fixture |
+| `python scripts/reproduce_results.py` / `make reproduce` | Rebuild raw features, train all three fixed models, calibrate and evaluate the recorded protocol in a new workspace; full CPU execution can take hours |
+| `python scripts/reproduce_results.py --prepare-only --use-cache` | Validate full-size input preparation without fitting |
+| `python -m unittest discover -s tests -v` / `make test` | Run release and analysis checks |
+| `python scripts/execute_final_notebook.py` / `make notebook` | Execute and save the final showcase |
 
-   ```bat
-   python -m pip install -r requirements-benchmark.txt
-   ```
+The full command requires the [local PeMS data](data/README.md). It does not overwrite `results/final/`, the published team summary or the original runs. Replaying the already-used holdout is reproduction, not a new unseen test. Historical six-fold tables are imported with provenance; the command does not reconstruct original historical fits with unavailable source snapshots. Figures and metrics in the final showcase are generated from the curated evidence.
 
-4. Follow the [notebook guide](notebooks/README.md) for saved results, error analysis, forward threshold validation and local benchmarking. The forward analysis requires the context cache generated by the all-model error analysis.
-
-Current training notebooks stay at their existing paths. Large data, caches and fitted checkpoints remain local; benchmark runs do not automatically overwrite the published team summary.
+[The executive summary](presentation/summary.md) states the study conclusion without naming a winner. Slides and their exported PDF will be uploaded manually under `presentation/`.
 
 ## Repository map
 
 | Location | Purpose |
 | --- | --- |
-| `notebooks/` | Current training entry points and shared feature module |
-| `notebooks/eda/` | Data exploration and historical extraction |
-| `notebooks/analysis/` | Feature-selection evidence, comparisons, error analysis and benchmarks |
-| `notebooks/archive/` | Earlier targets and superseded experiments |
-| `notebooks/results/` | Published team summary and per-fold model metrics |
-| `src/{random_forest,boosted_trees,transformer}/` | Reusable model implementations and local run artifacts |
-| `src/analysis/` | Scoring, uncertainty and benchmark helpers with tests |
-| `data/` | Local raw inputs and processed datasets |
-| `results/` | Analysis artifacts, summary figures and the detailed results overview |
+| `configs/` | Recorded target, split dates, budgets, seeds and model settings |
+| `notebooks/eda/` | Original EDA notebooks, unchanged |
+| `notebooks/final_results.ipynb` | Executable comparative-study showcase |
+| `notebooks/archive/` | Preserved research training and analysis notebooks |
+| `src/features/` | Public API to the byte-preserved shared feature implementation |
+| `src/{random_forest,boosted_trees,transformer}/` | All three model implementations and original local artifacts |
+| `src/analysis/` | Reusable scoring, uncertainty, packaging, reporting and replay code |
+| `scripts/` | Executable workflow entry points |
+| `artifacts/{random_forest,boosted_trees,transformer}/` | Separate checkpoint/preprocessing/statistics bundles; no final-model alias |
+| `results/final/` | Canonical study evidence, generated figures and provenance; `final` does not denote a model winner |
+| `results/` | Original timestamped runs and detailed historical reports |
+| `presentation/` | Executive summary and manually supplied slide files |
+| `tests/` | Release verification and existing analysis test suite |
+| `data/` | Data instructions and local inputs |
 
-Archived notebooks may use different targets and validation conventions; their scores are not directly comparable with the current 29-feature workflow. The [relocation map](notebooks/notebook_locations.json) records where earlier notebooks moved. Figures used here and their sources are documented in the [figure manifest](results/figures/summary/manifest.json).
+The legacy `notebooks/safeflow_features.py` is preserved byte-for-byte to keep recorded hashes and imports valid; `src.features.shared` exposes that exact module instead of duplicating formulas. The [notebook map](notebooks/notebook_locations.json) records relocated research files. Large raw inputs and reproduction workspaces remain local. The data's license/access conditions still apply.

@@ -240,3 +240,9 @@ Thumbs.db
 
 # Optional: ignore PyCharm settings
 .idea/
+
+# Local reproduction workspaces and raw PeMS exports
+/results/reproductions/
+/src/*/results/reproduction_*/
+/data/D12 */
+/data/D7 */

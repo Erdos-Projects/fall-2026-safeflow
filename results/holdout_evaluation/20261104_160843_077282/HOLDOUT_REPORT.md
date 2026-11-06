@@ -2,6 +2,14 @@
 
 **Completed 2026-11-04 16:17 EST.** Evaluated July-December 2025 once under a protocol frozen before reading the holdout. No model fitting or threshold tuning used holdout outcomes. The holdout is now **used**, not untouched.
 
+## Reading the warning policies
+
+A **warning policy** is an alerting rule: issue a warning when a predicted probability reaches a threshold chosen on earlier calibration data. Each model has its own frozen threshold. This does not prescribe a traffic-control action.
+
+A **warning budget** is an illustrative target for acceptable false-warning burden, not money and not a guaranteed future limit. The duration policy targets at most **4 wrong-alert hours/day**, summed across stations; the episode policy targets at most **20 false-warning episodes/day**. Both maximize early detection within their calibration target. The fixed 0.5 threshold is a separate diagnostic policy.
+
+One continuous 30-minute wrong warning is **one episode and 0.5 hours**; six separated five-minute wrong warnings are **six episodes and the same 0.5 hours**. Duration and episode counts measure different burdens. In the original tradeoff plots, circle/square/triangle mean duration/episode/fixed 0.5; colors identify models. Actual holdout burden can exceed the target, as it did here, so equal intended budgets are not exactly matched-cost comparisons.
+
 ## Main results
 
 | Model | Holdout AP | Brier | Early catch: duration policy | Actual wrong hours/day |

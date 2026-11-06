@@ -1,0 +1,30 @@
+{
+  "score_reproduction_passed": true,
+  "selected_final_model": null,
+  "input_release_manifest_sha256": "c0f2315d4879ee8420e136c8dee0305e59a38c9c4deff94108488878b26a2b7e",
+  "generator_sha256": "6e4bfcb6dae26c3299636437a0463a989fb09b1f553d4434e79360519ef2c724",
+  "figure_sha256": {
+    "development_ranking.png": "de19d1517b92579c5ca058a2083ef6c273ad7f3a84edc0cdbaff13422669b961",
+    "development_recurrence.png": "59e7706905321d43c46fa6c4bf4d5b1326c930b879ee21c80012eb9d0daf0354",
+    "forward_warning_budget.png": "940bfec944898aaa31a278388ff859071e89d08edaee690b9cc8d2a620d92a28",
+    "holdout_calibration.png": "d6f35088f83ca6077ec9b73ae51ddf0396c4d285ca17556a1c1d1bcf333a8cf9",
+    "holdout_errors_and_budget.png": "327b902f94c63bf4ab68e7804dc8c373b5718a64ab6f724683773bf179305e32",
+    "holdout_ranking.png": "ffa482ea27c840a1f58e2f2f98ef28e729070ea9a8f2de0d64b7bb70eff8a9ae",
+    "holdout_warning_tradeoffs.png": "54b18bbf1b68d1b8faf5342b8f213540bd8a4d258534c9182cdb8d61b65d0613",
+    "operational_benchmark.png": "0247f8f71c5fb8243a1a232d0ef31135bf1f91d11912004f8a5b7f3f3fff44d8",
+    "paired_uncertainty.png": "08d2c4a7a3ffcc568309049c8f31a2ff5088469e735832222a209716b0cc58a5"
+  },
+  "figures": [
+    "development_ranking.png",
+    "development_recurrence.png",
+    "forward_warning_budget.png",
+    "holdout_calibration.png",
+    "holdout_errors_and_budget.png",
+    "holdout_ranking.png",
+    "holdout_warning_tradeoffs.png",
+    "operational_benchmark.png",
+    "paired_uncertainty.png"
+  ],
+  "historical_cv": "Imported published evidence, not reconstructed historical training fits",
+  "calibration_plot": "Descriptive reliability only; no calibrator fitted to holdout"
+}

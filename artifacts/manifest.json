@@ -1,0 +1,24 @@
+{
+  "selected_final_model": null,
+  "leading_candidates": [
+    "boosted_trees",
+    "transformer"
+  ],
+  "models": {
+    "random_forest": {
+      "metadata": "random_forest/metadata.json",
+      "checkpoint": "random_forest/model.joblib",
+      "checkpoint_sha256": "d08a276dfb34380af829e4f21ca8d63d26024041b4f49f25339668e96b708899"
+    },
+    "boosted_trees": {
+      "metadata": "boosted_trees/metadata.json",
+      "checkpoint": "boosted_trees/model.joblib",
+      "checkpoint_sha256": "bb706e685784380716c60d517fd673407ed7d3cfc3330e1b918987862bf0e16f"
+    },
+    "transformer": {
+      "metadata": "transformer/metadata.json",
+      "checkpoint": "transformer/model.pt",
+      "checkpoint_sha256": "10c78c19ec6e546e1989025bdd4125d89f8fb4578e7ccda5f3305593d40b11ec"
+    }
+  }
+}

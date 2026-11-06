@@ -4,6 +4,14 @@ The historical development exports audited in the model decision analysis contai
 
 The [fresh local benchmark](../../results/local_model_benchmark/20261104_115016_080613/manifest.json) is complete for all three models; its new checkpoints and operational measurements are separate from those historical exports.
 
+## Reading the warning policies
+
+A **warning policy** is an alerting rule: issue a warning when a predicted probability reaches a threshold chosen on earlier calibration data. Each model has its own frozen threshold. This does not prescribe a traffic-control action.
+
+A **warning budget** is an illustrative target for acceptable false-warning burden, not money and not a guaranteed future limit. The duration policy targets at most **4 wrong-alert hours/day**, summed across stations; the episode policy targets at most **20 false-warning episodes/day**. Both maximize early detection within their calibration target. The fixed 0.5 threshold is a separate diagnostic policy.
+
+One continuous 30-minute wrong warning is **one episode and 0.5 hours**; six separated five-minute wrong warnings are **six episodes and the same 0.5 hours**. Duration and episode counts measure different burdens. In the original tradeoff plots, circle/square/triangle mean duration/episode/fixed 0.5; colors identify models. Actual holdout burden can exceed the target, as it did here, so equal intended budgets are not exactly matched-cost comparisons.
+
 ## Fresh local comparison
 
 Use [local_model_benchmark.ipynb](../../notebooks/analysis/local_model_benchmark.ipynb) to train fresh versions of all three models with the current feature source, instead of recovering old checkpoints. Start with quick mode, then run the full last development fold for a meaningful comparison. These are newly evaluated fits and do not establish deployment costs for the exact previously published checkpoints.

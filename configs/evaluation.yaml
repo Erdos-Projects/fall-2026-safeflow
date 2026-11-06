@@ -1,0 +1,40 @@
+study: safeflow_comparative_release
+selected_final_model: null
+leading_candidates: [boosted_trees, transformer]
+models: [random_forest, boosted_trees, transformer]
+data_dir: data
+holdout_already_evaluated: true
+target:
+  speed_below_mph: 40
+  future_readings: 6
+  interval_minutes: 5
+  early_warning_minutes: 15
+training:
+  validation_start: '2025-04-01'
+  target_window_end_before: '2025-03-25'
+  max_endpoints: 2000000
+  sample_seed: 0
+  sample_order: pandas_sample_order
+  threads: 4
+calibration:
+  start: '2025-04-01'
+  end: '2025-07-01'
+holdout:
+  start: '2025-07-01'
+  end: '2026-01-01'
+policies:
+  duration_hours_per_day: 4
+  false_episodes_per_day: 20
+  diagnostic_threshold: 0.5
+  primary: duration
+source_runs:
+  development_tables: notebooks/results
+  forward: results/forward_warning_budget_validation/20261104_102956_926783
+  uncertainty: results/model_decision_analysis/20261104_104058_694019
+  benchmark: results/local_model_benchmark/20261104_115016_080613
+  holdout: results/holdout_evaluation/20261104_160843_077282
+release:
+  results: results/final
+  artifacts: artifacts
+  summary: presentation/summary.md
+  historical_cv_scope: Published six-fold comparisons are provenance-backed snapshots, not regenerated historical fits.

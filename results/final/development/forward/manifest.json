@@ -1,0 +1,78 @@
+{
+  "source_analysis": "results\\error_analysis_models\\20261104_095913_315957",
+  "context_signature": "915ad346a57c2a4576e38652b6329cc792af972487ac8cc319f06c9677d9ce30",
+  "input_provenance": {
+    "Random Forest": {
+      "files": [
+        "C:\\Erdos\\Project\\safeflow\\src\\random_forest\\results\\random_forest_shared_29_features_full_20261031_200713_030817\\2024-01\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\random_forest\\results\\random_forest_shared_29_features_full_20261031_200713_030817\\2024-04\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\random_forest\\results\\random_forest_shared_29_features_full_20261031_200713_030817\\2024-07\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\random_forest\\results\\random_forest_shared_29_features_full_20261031_200713_030817\\2024-10\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\random_forest\\results\\random_forest_shared_29_features_full_20261031_200713_030817\\2025-01\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\random_forest\\results\\random_forest_shared_29_features_full_20261031_200713_030817\\2025-04\\validation_predictions.parquet"
+      ],
+      "probability_column": "probability",
+      "sha256": [
+        "cbff7bfd85688f8506cd9e39f39c58aa2a598f959d66d7f39be123848a7875d1",
+        "aa462cb465228924219f0e48cb6c67a652fc50076c83bc6d2479d390be9978d7",
+        "f2d4a926a92647e60a6ccfc83270e37652c7ceeb66248a5d217197ccf668adfe",
+        "0c3422ea7dc1bb94a616f554ff5df1fb2a6380b6db0877b565a810182ff27074",
+        "1f0635cda9cb8cca6f7416f77a90b2776ea945929fb568c970e9ff46ea1fdf7b",
+        "9f93d06425c9f29e22c88db8fa3e46946cb7d937cb61f9ee2ef0a2eaa3c04ea3"
+      ]
+    },
+    "Transformer": {
+      "files": [
+        "C:\\Erdos\\Project\\safeflow\\src\\transformer\\results\\transformer_29_features_20261031_085746_133888\\2024-01\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\transformer\\results\\transformer_29_features_20261031_085746_133888\\2024-04\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\transformer\\results\\transformer_29_features_20261031_085746_133888\\2024-07\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\transformer\\results\\transformer_29_features_20261031_085746_133888\\2024-10\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\transformer\\results\\transformer_29_features_20261031_085746_133888\\2025-01\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\transformer\\results\\transformer_29_features_20261031_085746_133888\\2025-04\\validation_predictions.parquet"
+      ],
+      "probability_column": "probability",
+      "sha256": [
+        "1e2c77b6709807863e92ab3dfc725c1023aff46649dc7e6746bff19eae138ca3",
+        "eefe5e0cc5ff394c4ba5717e9ab9f66f98255e2d7a5bcb51bf7b19af4e60396a",
+        "c21ce1559438a2a7ff07917dcbfb10e4161e789ad94f50f57cc1181cba45635d",
+        "2cc9b2e1935fd60e02189713f8eefa85e13983e7a4815a37c17e861a0527d050",
+        "e6e287b5cafb9302eb50d91a5807cb99b7ce31a596416cb8e45eecc019a12d32",
+        "06bc2693cdd6c1ab79a7c6c79eaa1f457653b6d66da0f5ce34513bbd0a3f655c"
+      ]
+    },
+    "Boosted trees (29)": {
+      "files": [
+        "C:\\Erdos\\Project\\safeflow\\src\\boosted_trees\\results\\boosted_trees_29_features_full_20261104_000723\\2024-01\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\boosted_trees\\results\\boosted_trees_29_features_full_20261104_000723\\2024-04\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\boosted_trees\\results\\boosted_trees_29_features_full_20261104_000723\\2024-07\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\boosted_trees\\results\\boosted_trees_29_features_full_20261104_000723\\2024-10\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\boosted_trees\\results\\boosted_trees_29_features_full_20261104_000723\\2025-01\\validation_predictions.parquet",
+        "C:\\Erdos\\Project\\safeflow\\src\\boosted_trees\\results\\boosted_trees_29_features_full_20261104_000723\\2025-04\\validation_predictions.parquet"
+      ],
+      "probability_column": "probability",
+      "sha256": [
+        "9cbbf37424c7e554832319a20e54df550a61a8ca30d6bc1f2737a17e157ec281",
+        "34f6e9c14a44d49507c40b63a1f6fad9efe34adc880af1a623e03a7b4b2ba448",
+        "f803f6b6f91444c42f7652cc72e711e293246641de6e6b3dfde28f6c099d3d35",
+        "d4eba0d033dbc935c80efd60e55cfede593396affd94d332ad3f8ce6d7b43213",
+        "d6e9c9e9909e55792489126c792d4bd199f615451bb6d24421f6ed788e72f243",
+        "eef36ca250fa29fd6a6551e774c6b0f361e404de36bc08379ec323446610f4ed"
+      ]
+    }
+  },
+  "shared_code_sha256": "09fee9268cfabcd7a9db64a86a7759f082eac6a14e2c51b2d85578ab982803fd",
+  "holdout_used": false,
+  "retrained": false,
+  "calibration": "expanding earlier OOF quarters only",
+  "evaluation_quarters": [
+    "2024-04 to 2024-06",
+    "2024-07 to 2024-09",
+    "2024-10 to 2024-12",
+    "2025-01 to 2025-03",
+    "2025-04 to 2025-06"
+  ],
+  "episode_budget": 20,
+  "hours_budget": 4,
+  "scorer_checks": "all 40 policies match shared alert_metrics",
+  "min_lead_minutes": 15
+}

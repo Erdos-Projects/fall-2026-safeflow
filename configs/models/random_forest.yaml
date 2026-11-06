@@ -1,0 +1,8 @@
+name: random_forest
+seed: 42
+parameters:
+  n_estimators: 300
+  max_depth: 12
+  min_samples_leaf: 10
+  max_samples: 0.25
+preprocessing: training-only median imputation, missing indicators, weekday one-hot encoding

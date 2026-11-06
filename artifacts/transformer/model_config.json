@@ -1,0 +1,18 @@
+{
+  "name": "transformer",
+  "seed": 42,
+  "lookback": 24,
+  "epochs": 10,
+  "batch_size": 256,
+  "learning_rate": 0.001,
+  "weight_decay": 0.01,
+  "device": "cpu",
+  "parameters": {
+    "d_model": 64,
+    "nhead": 4,
+    "num_layers": 2,
+    "d_ff": 128,
+    "dropout": 0.1
+  },
+  "preprocessing": "training-only medians and scaling, weekday encoding, missing indicators, gap-aware history padding"
+}

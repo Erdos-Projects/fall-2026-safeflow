@@ -8,6 +8,14 @@ At each station, every five minutes, predict whether measured speed will fall be
 
 [Training and notebook guide](../notebooks/README.md) | [Project setup](../README.md) | [Published metrics](../notebooks/results/summary.csv) | [Detailed tables and methods](#detailed-tables-and-methods)
 
+## Reading the warning policies
+
+A **warning policy** is an alerting rule: issue a warning when a predicted probability reaches a threshold chosen on earlier calibration data. Each model has its own frozen threshold. This does not prescribe a traffic-control action.
+
+A **warning budget** is an illustrative target for acceptable false-warning burden, not money and not a guaranteed future limit. The duration policy targets at most **4 wrong-alert hours/day**, summed across stations; the episode policy targets at most **20 false-warning episodes/day**. Both maximize early detection within their calibration target. The fixed 0.5 threshold is a separate diagnostic policy.
+
+One continuous 30-minute wrong warning is **one episode and 0.5 hours**; six separated five-minute wrong warnings are **six episodes and the same 0.5 hours**. Duration and episode counts measure different burdens. In the original tradeoff plots, circle/square/triangle mean duration/episode/fixed 0.5; colors identify models. Actual holdout burden can exceed the target, as it did here, so equal intended budgets are not exactly matched-cost comparisons.
+
 ## What the evidence says so far
 
 - **Holdout AP:** boosted trees **0.7412**, Transformer **0.7380**, Random Forest **0.7216**. Transformer catches more onsets early under the frozen duration policy, but **all three models exceed the intended warning budgets**.
@@ -17,39 +25,39 @@ At each station, every five minutes, predict whether measured speed will fall be
 
 ## 1. Ranking quality across time
 
-![Published mean average precision and quarterly AP for the three 29-feature models](figures/summary/published_ranking.png)
+![Published mean average precision and quarterly AP for the three 29-feature models](final/figures/development_ranking.png)
 
 Boosted trees have the highest published mean AP; Transformer is close. The whiskers show **fold standard deviation, not confidence intervals**. These are the current six-fold results, including the November 4 boosted-tree update. AP measures ranking of eligible forecast origins; it is not the fraction of onset events warned early.
 
-[Source tables](../notebooks/results/summary.csv) | [Comparison notebook](../notebooks/analysis/compare_models_29_features.ipynb)
+[Source tables](../notebooks/results/summary.csv) | [Comparison notebook](../notebooks/archive/analysis/compare_models_29_features.ipynb)
 
 ## 2. Do warning budgets carry into the next quarter?
 
-![Quarterly early detection and realized false-warning burden under two forward-calibrated policies](figures/summary/forward_warning_budget.png)
+![Quarterly early detection and realized false-warning burden under two forward-calibrated policies](final/figures/forward_warning_budget.png)
 
 Thresholds are selected using **earlier quarters only**, then frozen for the next quarter. Dashed lines are calibration budgets; actual next-quarter costs may exceed them. Transformer exceeded each selected budget in one of five quarters. Under the duration policy, it caught **53.2%** of onsets versus **52.7%** for boosted trees and **43.5%** for Random Forest. These are equal intended budgets, not identical realized costs.
 
-[Forward-policy notebook](../notebooks/analysis/forward_warning_budget_validation.ipynb) | [Quarterly results](forward_warning_budget_validation/20261104_102956_926783/quarterly_policies.csv)
+[Forward-policy notebook](../notebooks/archive/analysis/forward_warning_budget_validation.ipynb) | [Quarterly results](forward_warning_budget_validation/20261104_102956_926783/quarterly_policies.csv)
 
 ## 3. Is the Transformer advantage convincing?
 
-![Paired weekly uncertainty for Transformer minus boosted trees on detection and warning costs](figures/summary/paired_uncertainty.png)
+![Paired weekly uncertainty for Transformer minus boosted trees on detection and warning costs](final/figures/paired_uncertainty.png)
 
 The primary detection difference is **+0.50 percentage points**, with a weekly 95% interval of **-0.66 to +1.57**. This does not establish superior detection or equivalence. The average false-episode and wrong-duration differences favor Transformer under this frozen duration policy. Intervals use 5,000 paired weekly resamples and condition on existing fitted models and thresholds; they do not cover feature selection, retraining uncertainty or future regime shifts.
 
-[Uncertainty notebook](../notebooks/analysis/model_decision_analysis.ipynb) | [All intervals and daily sensitivity](model_decision_analysis/20261104_104058_694019/paired_intervals.csv)
+[Uncertainty notebook](../notebooks/archive/analysis/model_decision_analysis.ipynb) | [All intervals and daily sensitivity](model_decision_analysis/20261104_104058_694019/paired_intervals.csv)
 
 ## 4. The hard cases: non-recurrent congestion
 
-![Forward early detection by non-recurrent, occasional and recurrent congestion groups](figures/summary/recurrence.png)
+![Forward early detection by non-recurrent, occasional and recurrent congestion groups](final/figures/development_recurrence.png)
 
 Under the duration policy, Transformer caught only **4.9%** of non-recurrent onsets early, boosted trees **3.4%**, and Random Forest **1.2%**. Grouping uses each fold's training-only usual congestion rate 15 minutes before onset. The 33 onsets with missing recurrence context are excluded from these groups but retained in overall detection. Improving these hard cases matters more than a small aggregate-score gain.
 
-[Recurrence results](forward_warning_budget_validation/20261104_102956_926783/recurrence_summary.csv) | [Error-analysis notebook](../notebooks/analysis/error_analysis_models.ipynb)
+[Recurrence results](forward_warning_budget_validation/20261104_102956_926783/recurrence_summary.csv) | [Error-analysis notebook](../notebooks/archive/analysis/error_analysis_models.ipynb)
 
 ## 5. Deployment practicality: completed local benchmark
 
-![Completed local training, batch inference and process memory comparison](figures/summary/local_benchmark.png)
+![Completed local training, batch inference and process memory comparison](final/figures/operational_benchmark.png)
 
 | Model | Last-fold AP | Fit/predict/save | Batch 46 median | Inference peak RSS |
 | --- | --- | --- | --- | --- |
@@ -61,7 +69,7 @@ Transformer has the highest AP in this fresh last-fold run and the lowest warm s
 
 These are fresh one-fold results, not replacements for the six-fold published means or the earlier forward policies. At threshold 0.5, Transformer's higher early catch also came with greater warning burden. Small-batch latency starts from cached engineered features; raw-to-feature extraction is excluded. Peak RSS includes dependencies, fixture data and optional stress tests. No holdout data was used.
 
-[Completed benchmark tables](local_model_benchmark/20261104_115016_080613/manifest.json) | [Benchmark notebook](../notebooks/analysis/local_model_benchmark.ipynb)
+[Completed benchmark tables](local_model_benchmark/20261104_115016_080613/manifest.json) | [Benchmark notebook](../notebooks/archive/analysis/local_model_benchmark.ipynb)
 
 ## 6. Frozen-checkpoint holdout evaluation
 
@@ -71,9 +79,9 @@ These are fresh one-fold results, not replacements for the six-fold published me
 | Transformer | 0.7380 | 0.0240 | 56.7% | 4.97 |
 | Random Forest | 0.7216 | 0.0248 | 43.9% | 4.81 |
 
-![Holdout precision-recall and monthly AP](figures/summary/holdout_ranking.png)
+![Holdout precision-recall and supplementary ROC curves](final/figures/holdout_ranking.png)
 
-![Holdout detection and actual warning burden](figures/summary/holdout_warning_tradeoffs.png)
+![Holdout detection and actual warning burden](final/figures/holdout_warning_tradeoffs.png)
 
 The test covers 966,000 rows, 125 days and 3,497 onsets. Checkpoints were fitted before April; April-June supplied calibration. No holdout fitting or threshold adaptation occurred. Under the duration policy, Transformer gains 2.34 detection percentage points over boosted trees (weekly interval +1.19 to +3.49), with 0.097 additional wrong-alert hours/day (interval spanning zero). All duration and episode calibration budgets were exceeded. These results do not establish performance at identical realized cost.
 
@@ -81,7 +89,7 @@ The test covers 966,000 rows, 125 days and 3,497 onsets. Checkpoints were fitted
 
 ## Current decision and next steps
 
-Keep **Transformer and boosted trees as finalists**. Use the completed local measurements to compare detection and actual warning burden together with deployment cost, and investigate non-recurrent congestion. The optional missing-feature tests are diagnostics, not causal raw-detector outage simulations. The holdout is now used; further tuning needs fresh independent validation.
+All three models are retained, with **Transformer and boosted trees as leading candidates**, and no single final model designated. Use the completed local measurements to compare detection and actual warning burden together with deployment cost, and investigate non-recurrent congestion. The optional missing-feature tests are diagnostics, not causal raw-detector outage simulations. The holdout is now used; further tuning needs fresh independent validation.
 
 ## Detailed tables and methods
 
@@ -106,7 +114,7 @@ An onset is a measured congested reading after 30 minutes of measured uncongeste
 
 These are published fold-averaged metrics. **A common threshold of 0.5 does not equalize warning burden:** probability calibration and score distributions differ between models. Higher AP does not automatically mean higher early event detection or lower operational cost.
 
-Source: [published summary](../notebooks/results/summary.csv). Historical pooled budget selection in [error analysis](../notebooks/analysis/error_analysis_models.ipynb) is exploratory because the same predictions selected and evaluated thresholds; the forward test below is more informative about threshold transfer.
+Source: [published summary](../notebooks/results/summary.csv). Historical pooled budget selection in [error analysis](../notebooks/archive/analysis/error_analysis_models.ipynb) is exploratory because the same predictions selected and evaluated thresholds; the forward test below is more informative about threshold transfer.
 
 ## Forward warning-budget validation
 
@@ -132,7 +140,7 @@ Each model gets its own threshold, selected using all **earlier out-of-fold quar
 
 These are equal **intended calibration budgets**, not identical realized costs. Transformer exceeded each selected budget in one evaluation quarter; this is not erased by retuning. Timetable detection under the episode policy comes with 6.78 wrong-alert hours/day, illustrating why episode count alone can hide prolonged warning burden.
 
-Sources: [executed forward notebook](../notebooks/analysis/forward_warning_budget_validation.ipynb), [summary](forward_warning_budget_validation/20261104_102956_926783/summary.csv), [quarterly policies](forward_warning_budget_validation/20261104_102956_926783/quarterly_policies.csv), [detection and burden plot](forward_warning_budget_validation/20261104_102956_926783/forward_detection_and_burden.png).
+Sources: [executed forward notebook](../notebooks/archive/analysis/forward_warning_budget_validation.ipynb), [summary](forward_warning_budget_validation/20261104_102956_926783/summary.csv), [quarterly policies](forward_warning_budget_validation/20261104_102956_926783/quarterly_policies.csv), [detection and burden plot](forward_warning_budget_validation/20261104_102956_926783/forward_detection_and_burden.png).
 
 ## Paired uncertainty: Transformer minus boosted trees
 
@@ -149,7 +157,7 @@ Positive detection differences favor Transformer; negative cost differences favo
 
 For rare onsets, the weekly duration-policy detection interval touches zero, while the daily interval excludes zero. That subgroup conclusion is sensitive to the temporal dependence assumption. Intervals condition on saved fits and selected thresholds; they exclude retraining, threshold-selection and feature/model-selection uncertainty. They do not guarantee future-quarter burden or replace final holdout evaluation.
 
-Sources: [model decision notebook](../notebooks/analysis/model_decision_analysis.ipynb), [all intervals](model_decision_analysis/20261104_104058_694019/paired_intervals.csv), [interval visualization](model_decision_analysis/20261104_104058_694019/paired_uncertainty.png).
+Sources: [model decision notebook](../notebooks/archive/analysis/model_decision_analysis.ipynb), [all intervals](model_decision_analysis/20261104_104058_694019/paired_intervals.csv), [interval visualization](model_decision_analysis/20261104_104058_694019/paired_uncertainty.png).
 
 ## Non-recurrent congestion is the main predictive weakness
 
@@ -193,9 +201,9 @@ All **10 epochs** finished, with training BCE decreasing from 0.0813 to 0.0709. 
 
 All three workers also completed nine missing-feature scenarios each, alongside clean predictions: **30 scenario rows** in [feature_stress.csv](local_model_benchmark/20261104_115016_080613/feature_stress.csv). These mask feature families at 11:00 for 5/15/30 minutes while keeping labels fixed; they are diagnostics on five days, not causal raw-detector outage simulations.
 
-Sources: [training](local_model_benchmark/20261104_115016_080613/training.csv), [inference and reproduction](local_model_benchmark/20261104_115016_080613/inference.csv), [latency](local_model_benchmark/20261104_115016_080613/latency.csv), [predictive metrics](local_model_benchmark/20261104_115016_080613/predictive_metrics.csv), and [executed notebook](../notebooks/analysis/local_model_benchmark.ipynb). Large fitted models and fixtures remain local. The original Transformer provenance mismatch still applies to historical exports; these new fits use the current shared source.
+Sources: [training](local_model_benchmark/20261104_115016_080613/training.csv), [inference and reproduction](local_model_benchmark/20261104_115016_080613/inference.csv), [latency](local_model_benchmark/20261104_115016_080613/latency.csv), [predictive metrics](local_model_benchmark/20261104_115016_080613/predictive_metrics.csv), and [executed notebook](../notebooks/archive/analysis/local_model_benchmark.ipynb). Large fitted models and fixtures remain local. The original Transformer provenance mismatch still applies to historical exports; these new fits use the current shared source.
 
-## What remains before a final model decision
+## Next steps for the comparative study
 
 1. Compare the completed last-fold predictive and operational results together, while preserving the distinction from six-fold and forward-policy estimates.
 2. Compare fresh last-fold detection and actual burden together with latency, training cost and memory. A small AP or detection difference alone is not a decisive deployment argument.
@@ -209,4 +217,4 @@ Sources: [training](local_model_benchmark/20261104_115016_080613/training.csv), 
 
 ---
 
-*Static work-in-progress snapshot. Figures are stored alongside this page for GitHub rendering. [Figure provenance](figures/summary/manifest.json) records their source artifacts. The completed full-run notebook and aggregate tables are linked above. This remains a developmental project snapshot, not a holdout report.*
+*Static work-in-progress snapshot. Figures are stored alongside this page for GitHub rendering. [Figure provenance](final/report_manifest.json) records their source artifacts. The completed full-run notebook and aggregate tables are linked above. This remains a developmental project snapshot, not a holdout report.*

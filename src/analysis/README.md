@@ -1,6 +1,6 @@
 # Early-warning error analysis
 
-`notebooks/analysis/error_analysis_models.ipynb` extends the original `notebooks/archive/error_analysis.ipynb`
+`notebooks/archive/analysis/error_analysis_models.ipynb` extends the original `notebooks/archive/error_analysis.ipynb`
 to saved model probabilities. It does not fit models or read the final holdout.
 
 The Random Forest full-run export is detected automatically. Set
@@ -52,11 +52,11 @@ existing team summary remain unchanged.
 
 ## Forward evaluation
 
-`notebooks/analysis/forward_warning_budget_validation.ipynb` calibrates each policy on expanding earlier out-of-fold quarters and evaluates the frozen threshold in the next quarter (five evaluated quarters). It reuses the verified error-analysis context cache and prediction provenance. Tables report actual future burden, budget breaches and onset-weighted recall; costs are weighted by days. This is development-only threshold transfer, not final holdout performance. Artifacts are saved in `results/forward_warning_budget_validation/<timestamp>/`.
+`notebooks/archive/analysis/forward_warning_budget_validation.ipynb` calibrates each policy on expanding earlier out-of-fold quarters and evaluates the frozen threshold in the next quarter (five evaluated quarters). It reuses the verified error-analysis context cache and prediction provenance. Tables report actual future burden, budget breaches and onset-weighted recall; costs are weighted by days. This is development-only threshold transfer, not final holdout performance. Artifacts are saved in `results/forward_warning_budget_validation/<timestamp>/`.
 
 ## Paired uncertainty and operational readiness
 
-`notebooks/analysis/model_decision_analysis.ipynb` reconstructs daily event/cost counts from the frozen forward policies. It checks their totals against the forward tables, then uses 5,000 paired calendar-week resamples within each quarter, with a daily-resampling sensitivity analysis. All stations are retained together. The main contrast is Transformer minus boosted trees under the duration-budget policy; Random Forest and the episode policy are secondary comparisons. Ratios are computed from summed counts in every replicate, rather than averaging daily recalls.
+`notebooks/archive/analysis/model_decision_analysis.ipynb` reconstructs daily event/cost counts from the frozen forward policies. It checks their totals against the forward tables, then uses 5,000 paired calendar-week resamples within each quarter, with a daily-resampling sensitivity analysis. All stations are retained together. The main contrast is Transformer minus boosted trees under the duration-budget policy; Random Forest and the episode policy are secondary comparisons. Ratios are computed from summed counts in every replicate, rather than averaging daily recalls.
 
 Intervals condition on saved fitted models and thresholds, exclude model/feature-selection uncertainty, and do not establish performance at identical realized cost. Local model checkpoint availability, feature-source hashes and historical timing evidence are audited separately. Missing fitted checkpoints prevent a measured latency/memory/outage comparison; the notebook records the exact exports needed. Outputs are under `results/model_decision_analysis/<timestamp>/`.
 
@@ -68,7 +68,7 @@ See [the operational benchmark protocol](operational_benchmark_protocol.md) for 
 
 ## Local fresh-fit benchmark
 
-`notebooks/analysis/local_model_benchmark.ipynb` uses `local_benchmark.py` workers to train and benchmark RF, boosted trees and Transformer on the same last development fold. Set `QUICK_RUN = False` for established full model sizes and the 2-million training cap. Install `requirements-benchmark.txt` in the selected kernel. Each model runs in separate training/inference processes, with common thread limits and checkpoint reproduction checks. Outputs are under `results/local_model_benchmark/<run>/`; fitted models stay in each model's local results directory. No team metrics are published automatically.
+`notebooks/archive/analysis/local_model_benchmark.ipynb` uses `local_benchmark.py` workers to train and benchmark RF, boosted trees and Transformer on the same last development fold. Set `QUICK_RUN = False` for established full model sizes and the 2-million training cap. Install `requirements-benchmark.txt` in the selected kernel. Each model runs in separate training/inference processes, with common thread limits and checkpoint reproduction checks. Outputs are under `results/local_model_benchmark/<run>/`; fitted models stay in each model's local results directory. No team metrics are published automatically.
 
 ## Frozen holdout evaluation
 

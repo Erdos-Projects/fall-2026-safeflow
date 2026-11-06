@@ -1,6 +1,6 @@
 # Boosted trees with the shared 29 features
 
-Run `notebooks/train_boosted_trees.ipynb` from the project root or `notebooks/`.
+Run `notebooks/archive/training/train_boosted_trees.ipynb` from the project root or `notebooks/`.
 Use `QUICK_RUN = True` for a last-fold smoke test, then `False` for the complete
 six-quarter walk-forward experiment.
 

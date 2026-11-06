@@ -1,0 +1,16 @@
+# Recorded CPU release environment; Python 3.12.14
+--extra-index-url https://download.pytorch.org/whl/cpu
+numpy==2.5.3
+pandas==2.3.3
+pyarrow==25.0.0
+matplotlib==3.9.1
+scikit-learn==1.9.1
+scipy==1.18.1
+torch==2.15.0
+psutil==7.2.2
+nbformat==5.11.1
+ipykernel==7.3.0
+joblib==1.6.0
+threadpoolctl==3.7.0
+PyYAML==6.0.3
+nbclient==0.11.0

@@ -1,0 +1,83 @@
+{
+  "model": "transformer",
+  "selected_final_model": false,
+  "role": "retained comparative candidate",
+  "checkpoint": "model.pt",
+  "checkpoint_sha256": "10c78c19ec6e546e1989025bdd4125d89f8fb4578e7ccda5f3305593d40b11ec",
+  "features": [
+    "speed_anomaly",
+    "occ_anomaly",
+    "typical_congestion_30",
+    "speed_delta_2",
+    "flow",
+    "down_minus_here",
+    "up_minus_here",
+    "tod_sin",
+    "tod_cos",
+    "dow",
+    "pm",
+    "onramp_flow_up",
+    "offramp_flow_down",
+    "jam_distance_down",
+    "min_speed_down_anomaly",
+    "jam_distance_change_10",
+    "speed",
+    "occupancy",
+    "speed_delta_1",
+    "speed_delta_3",
+    "upstream_speed_delta_1",
+    "upstream_speed_delta_2",
+    "upstream_speed_delta_3",
+    "downstream_speed_delta_1",
+    "downstream_speed_delta_2",
+    "upstream_distance_miles",
+    "slow_last_30",
+    "minutes_since_slow",
+    "speed_lag_30"
+  ],
+  "feature_code_sha256": "09fee9268cfabcd7a9db64a86a7759f082eac6a14e2c51b2d85578ab982803fd",
+  "feature_implementation": "notebooks/safeflow_features.py",
+  "dataset_signature": "343e4e0462efaa0f2830061344be42661649ebe8a7dc5878deaecdbf11055b8e",
+  "training_window_end_before": "2025-03-25",
+  "calibration_start": "2025-04-01",
+  "calibration_end": "2025-07-01",
+  "holdout_start": "2025-07-01",
+  "holdout_end": "2026-01-01",
+  "versions": {
+    "numpy": "2.5.3",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.9.1",
+    "torch": "2.15.0",
+    "pyarrow": "25.0.0"
+  },
+  "policies": [
+    {
+      "model": "transformer",
+      "policy": "episodes",
+      "threshold": 0.6838852763175964,
+      "budget": 20.0,
+      "calibration_catch": 0.5260416666666666,
+      "calibration_false_episodes_per_day": 20.0,
+      "calibration_wrong_alert_hours_per_day": 2.7962962962962963
+    },
+    {
+      "model": "transformer",
+      "policy": "duration",
+      "threshold": 0.5833901762962341,
+      "budget": 4.0,
+      "calibration_catch": 0.6106770833333334,
+      "calibration_false_episodes_per_day": 25.58730158730159,
+      "calibration_wrong_alert_hours_per_day": 3.992063492063492
+    },
+    {
+      "model": "transformer",
+      "policy": "default_0.5",
+      "threshold": 0.5,
+      "budget": null
+    }
+  ],
+  "input_contract": "Engineered station/time rows, sorted by station and timestamp; include history rows for Transformer.",
+  "predict_api": "src.analysis.study_release.CandidateBundle.predict_features",
+  "no_budget_compliant_model": true,
+  "leading_candidate": true
+}
