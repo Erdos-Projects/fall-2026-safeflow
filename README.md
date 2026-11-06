@@ -22,9 +22,9 @@ We evaluate warning quality separately from this target. An **onset** is a conge
 
 ## Warning policies and budgets
 
-A **warning policy** turns a probability into an action: issue an alert when the model score is at least a chosen threshold. Each model has its own threshold. For the holdout study, thresholds were chosen using April-June calibration data and then frozen. This is an alerting rule, not a rule for controlling traffic.
+A **warning policy** turns a probability into an action: issue an alert when the model score is at least a chosen threshold. Each model has its own threshold. For the holdout study, thresholds were chosen using April-June calibration data and then frozen.
 
-A **warning budget** is a target for acceptable false-warning burden used during threshold selection. It is not money and is not a guaranteed limit on future data. These illustrative study targets require stakeholder validation.
+A **warning budget** is a target for acceptable false-warning burden used during threshold selection. It does not ensure a guaranteed limit on future data, as we see during testing. These illustrative study targets require stakeholder validation.
 
 | Policy | Calibration target | Shape in the original tradeoff plots |
 | --- | --- | --- |
