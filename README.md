@@ -4,7 +4,7 @@
 
 SafeFlow asks whether a traffic station will become congested within the next 30 minutes, and whether that warning can arrive early enough to be useful without generating too many false alerts. We compare tabular tree models with a Transformer using a shared set of traffic, spatial and temporal features.
 
-> **Project status: development, November 2026.** The current comparison uses D12 data. Development validation and forward warning-policy analyses are complete; the full local benchmark is complete. The July-December 2025 holdout has now been evaluated once using frozen checkpoints and development-calibrated thresholds. This is a comparative study: all three models are retained, with boosted trees and Transformer as leading candidates and no single final model designated.
+> **Project status: development, November 2026.** The current comparison uses District 12 data. Development validation and forward warning-policy analyses are complete; the full local benchmark is complete. The July-December 2025 holdout has now been evaluated once using frozen checkpoints and development-calibrated thresholds. This is a comparative study: all three models are retained, with boosted trees and Transformer as leading candidates and no single final model designated.
 
 [Problem](#the-problem) | [Stakeholders](#stakeholders) | [Warning policies](#warning-policies-and-budgets) | [Dataset](#the-dataset) | [Models](#the-models) | [Metrics](#how-performance-is-measured) | [Results](#what-we-have-found) | [Reproduction](#reproducing-the-study)
 
@@ -22,7 +22,7 @@ We evaluate warning quality separately from this target. An **onset** is a conge
 
 ## Warning policies and budgets
 
-A **warning policy** turns a probability into an action: issue an alert when the model score is at least a chosen threshold. Each model has its own threshold. For the holdout study, thresholds were chosen using April-June calibration data and then frozen.
+A **warning policy** turns a probability into an action: issue an alert when the model score is at least a chosen threshold. Each model has its own threshold. For the holdout study, thresholds were chosen using April–June calibration data and then frozen.
 
 A **warning budget** is a target for acceptable false-warning burden used during threshold selection. It does not ensure a guaranteed limit on future data, as we see during testing. These illustrative study targets require stakeholder validation.
 
@@ -48,11 +48,11 @@ SafeFlow currently evaluates predictions and warning policies. It does not yet e
 
 ## The dataset
 
-The project uses local **Caltrans PeMS station measurements** and station metadata. The current evaluated corridor comprises **46 I-5 mainline stations in D12**. D7 data is available locally for future work but is not included in the results below.
+The project uses local **Caltrans PeMS station measurements** and station metadata. The current evaluated corridor comprises **46 I-5 mainline stations in District 12**. District 7 data is available locally for future work but is not included in the results below.
 
 | Component | Current scope |
 | --- | --- |
-| Available years | D12 2023, 2024 and 2025 |
+| Available years | District 12 2023, 2024 and 2025 |
 | Measurement interval | 5 minutes |
 | Traffic measurements | Speed, flow, occupancy and percentage observed |
 | Spatial context | Station order, postmile, neighboring detectors and nearby ramps |
@@ -73,10 +73,10 @@ All three models use the **same 29 logical features**, implemented in [safeflow_
 | Feature family | Examples and purpose |
 | --- | --- |
 | Current conditions | Speed, occupancy and flow describe the traffic state |
-| Recent changes | Speed deltas, a 30-minute speed lag and recent slow readings describe deterioration or recovery |
+| Recent changes | Speed deltas (difference between current and 5, 10, 15 mintutes ago), a 30-minute speed lag and slow readings in the previous 30 minutes describe deterioration or recovery |
 | Spatial conditions | Upstream/downstream speed differences, detector distance and downstream jam proximity describe conditions along the corridor |
 | Typical patterns | Training-period congestion rates and speed/occupancy anomalies distinguish expected traffic from unusual conditions |
-| Context | Time of day, weekday, postmile and nearby ramp flows provide temporal and spatial context |
+| Context | Time of day, weekday, postmile and nearby ramp flow provide temporal and spatial context |
 
 Training-dependent typical values and anomalies are recomputed inside each fold using that fold's training period. The [feature-engineering notes](results/final/development/feature_engineering.md) document the kept, replaced, dropped and later-added inputs. The [feature-selection analysis](notebooks/archive/analysis/feature_selection_results.ipynb) documents the development rationale; these features remain subject to the final validation protocol.
 
@@ -93,7 +93,7 @@ The comparison tests whether a sequence model offers enough predictive benefit t
 
 The shared feature list does **not** make the inputs identical: the Transformer additionally sees a sequence of those features. The tree models already have engineered temporal and spatial features, but do not consume the same full sequence.
 
-Full local benchmark settings use 300 Random Forest trees, 300 boosting iterations and ten Transformer epochs. Implementations live in [src/random_forest](src/random_forest/README.md), [src/boosted_trees](src/boosted_trees/README.md) and `src/transformer/`.
+Full local benchmark settings use 300 Random Forest trees, 300 boosting iterations and ten Transformer epochs per fold. Implementations live in [src/random_forest](src/random_forest/README.md), [src/boosted_trees](src/boosted_trees/README.md) and `src/transformer/`.
 
 ## Validation: testing on later traffic
 
@@ -101,8 +101,8 @@ Random train/test splits would mix earlier and later traffic conditions. We inst
 
 There are two complementary development comparisons:
 
-1. **Model quality across six quarters:** evaluate saved out-of-fold probabilities and report AP, probability error and warning metrics.
-2. **Forward warning policies across five quarters:** select each model's threshold using earlier out-of-fold quarters only, freeze it, then measure detection and actual burden in the next quarter. Q1 2024 initializes threshold calibration; Q2 2024 through Q2 2025 are evaluated.
+1. **Model quality across six quarters:** evaluate saved out-of-fold probabilities and report average precision (AP), probability error and warning metrics.
+2. **Forward warning policies across five quarters:** select each model's threshold using earlier out-of-fold quarters only, freeze it, then measure detection and actual burden in the next quarter. 2024 Q1 initializes threshold calibration; 2024 Q2 through 2025 Q2 are evaluated.
 
 The holdout was accessed only after the checkpoints, feature rules and threshold policies were frozen. Forward threshold testing remains development evidence: the broader feature and model choices have already been informed by development results.
 
@@ -123,7 +123,7 @@ Despite its saved name, **`AP, onsets` is a ranking metric over eligible forecas
 
 ## What we have found
 
-### Holdout evaluation: July-December 2025
+### Holdout evaluation: July–December 2025
 
 | Model | Holdout AP | Brier | Early catch: duration policy | Actual wrong hours/day |
 | --- | --- | --- | --- | --- |
@@ -131,7 +131,7 @@ Despite its saved name, **`AP, onsets` is a ranking metric over eligible forecas
 | Transformer | 0.7380 | 0.0240 | 56.7% | 4.97 |
 | Random Forest | 0.7216 | 0.0248 | 43.9% | 4.81 |
 
-These frozen models were fitted before April; April-June predictions calibrated their thresholds. They were not refitted through June. All three models exceeded the 4 wrong-alert-hours/day budget on holdout, so the higher detection rates do not establish compliant operation at that cap.
+These frozen models were fitted before April; April–June predictions calibrated their thresholds. They were not refitted through June. All three models exceeded the 4 wrong-alert-hours/day budget on holdout, so the higher detection rates do not establish compliant operation at that cap.
 
 ![Holdout probability ranking with PR and supplementary ROC curves](results/final/figures/holdout_ranking.png)
 
@@ -193,7 +193,7 @@ Among 1,136 non-recurrent onsets, early detection under the duration policy was 
 
 Transformer has the highest AP in this fresh last-fold run and the lowest warm small-batch latency. Its fit/predict/save stage took about **130 minutes**, versus **0.81 minutes** for boosted trees and **4.10 minutes** for Random Forest. Boosted trees were faster over the complete 38,640-endpoint fixture: **0.50 seconds**, versus **2.03 seconds** for Transformer and **4.00 seconds** for Random Forest. Inference speed therefore depends on batch size and whether encoding/building costs are included.
 
-All models used the same April-June 2025 development fold, two million training endpoints and four CPU threads. All three saved checkpoints passed prediction reproduction checks.
+All models used the same April–June 2025 development fold, two million training endpoints and four CPU threads. All three saved checkpoints passed prediction reproduction checks.
 
 These are fresh one-fold results, not replacements for the six-fold published means or the earlier forward policies. At threshold 0.5, Transformer's higher early catch also came with greater warning burden. Small-batch latency starts from cached engineered features; raw-to-feature extraction is excluded. Peak RSS includes dependencies, fixture data and optional stress tests. No holdout data was used. [Benchmark notebook](notebooks/archive/analysis/local_model_benchmark.ipynb) and [completed run tables](results/local_model_benchmark/20261104_115016_080613/manifest.json).
 
@@ -201,7 +201,7 @@ These are fresh one-fold results, not replacements for the six-fold published me
 
 All three models are retained; boosted trees and Transformer remain the leading candidates. Neither satisfies the target warning budget on holdout. Both demonstrate the predictive feasibility of our target design, while improvements and retraining require new independent evaluation. This is evidence for further development, not proof of budget-compliant deployment or a promise that retraining will fix the breach.
 
-Current evidence is limited to this D12 corridor and development period; performance on D7 or a combined analysis is not established. The historical Transformer export also records a different shared-feature source hash from the current module. Fresh local fits use the current shared source, but do not establish exact reproduction of that historical run.
+Current evidence is limited to this District 12 corridor and development period; performance on District 7 or a combined analysis is not established. The historical Transformer export also records a different shared-feature source hash from the current module. Fresh local fits use the current shared source, but do not establish exact reproduction of that historical run.
 
 The frozen-checkpoint holdout evaluation is complete. Further model or policy tuning requires new independent validation; this same period can no longer serve as an untouched test. The [visual results overview](results/RESULTS_SUMMARY.md) preserves detailed tables, artifact links and the completed local benchmark snapshot.
 
