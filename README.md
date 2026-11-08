@@ -119,7 +119,9 @@ Congestion onset is relatively uncommon among currently uncongested forecast ori
 | Wrong-alert hours/day | Total duration of those wrong-warning readings, summed across stations per day | Lower |
 | Latency, memory and training cost | Whether the predictive benefit is practical on the available hardware | Lower cost for comparable predictive value |
 
-Despite its saved name, **`AP, onsets` is a ranking metric over eligible forecast origins, not event detection recall**. Both measures are needed. Likewise, a threshold of 0.5 can produce different alert volumes for different models because their score distributions and calibration differ.
+**Average precision (saved as `AP, onsets`) measures how well the model distinguishes upcoming congestion from continued uncongested conditions at each eligible prediction time.** It does not measure how many distinct congestion events receive an early warning; we report that separately as early event detection.
+
+A probability threshold of 0.5 also does not ensure equal false-warning burden: models can assign different probabilities to the same conditions, so they can issue different numbers of warnings at that threshold.
 
 ## What we have found
 
@@ -191,17 +193,25 @@ Among 1,136 non-recurrent onsets, early detection under the duration policy was 
 | Boosted trees | 0.7669 | 0.81 min | 3.02 ms | 296.4 MiB |
 | Transformer | 0.7713 | 130.01 min | 2.39 ms | 486.9 MiB |
 
-Transformer has the highest AP in this fresh last-fold run and the lowest warm small-batch latency. Its fit/predict/save stage took about **130 minutes**, versus **0.81 minutes** for boosted trees and **4.10 minutes** for Random Forest. Boosted trees were faster over the complete 38,640-endpoint fixture: **0.50 seconds**, versus **2.03 seconds** for Transformer and **4.00 seconds** for Random Forest. Inference speed therefore depends on batch size and whether encoding/building costs are included.
+Transformer had the highest AP in this single development-fold test. Preparing the model took much longer: training, validation prediction and saving together took about **130 minutes**, compared with **0.81 minutes** for boosted trees and **4.10 minutes** for Random Forest.
+
+Once the models were loaded and ready, Transformer returned predictions fastest for small requests, including requests covering all 46 stations. Boosted trees processed the full test set of 38,640 prediction points fastest: **0.50 seconds**, compared with **2.03 seconds** for Transformer and **4.00 seconds** for Random Forest. These results measure different workloads: Transformer responded fastest to small requests, while boosted trees completed the large workload fastest. Prediction timings start from precomputed features and exclude collecting detector data and computing those features.
 
 All models used the same April–June 2025 development fold, two million training endpoints and four CPU threads. All three saved checkpoints passed prediction reproduction checks.
 
-These are fresh one-fold results, not replacements for the six-fold published means or the earlier forward policies. At threshold 0.5, Transformer's higher early catch also came with greater warning burden. Small-batch latency starts from cached engineered features; raw-to-feature extraction is excluded. Peak RSS includes dependencies, fixture data and optional stress tests. No holdout data was used. [Benchmark notebook](notebooks/archive/analysis/local_model_benchmark.ipynb) and [completed run tables](results/local_model_benchmark/20261104_115016_080613/manifest.json).
+These results come from one development fold and are separate from the six-fold averages and earlier evaluations of warning rules. When every model issued warnings at a predicted probability of 0.5 or higher, Transformer warned of more congestion events early, but also produced more false-warning time.
+
+Prediction times assume the input features have already been computed; collecting detector data and preparing those features would add time. Reported memory usage is the highest RAM usage of the whole test process, including the model, loaded software libraries, test data and any additional stress tests. It is not the memory required by the model alone.
+
+This benchmark used no holdout data. See the [benchmark notebook](notebooks/archive/analysis/local_model_benchmark.ipynb) and [completed run tables](results/local_model_benchmark/20261104_115016_080613/manifest.json).
 
 ## Conclusions and next steps
 
 All three models are retained; boosted trees and Transformer remain the leading candidates. Neither satisfies the target warning budget on holdout. Both demonstrate the predictive feasibility of our target design, while improvements and retraining require new independent evaluation. This is evidence for further development, not proof of budget-compliant deployment or a promise that retraining will fix the breach.
 
-Current evidence is limited to this District 12 corridor and development period; performance on District 7 or a combined analysis is not established. The historical Transformer export also records a different shared-feature source hash from the current module. Fresh local fits use the current shared source, but do not establish exact reproduction of that historical run.
+Current evidence is limited to this District 12 corridor and the periods evaluated; performance on District 7 or a combined analysis is not established.
+
+The historical six-fold Transformer averages and earlier forward-warning analyses use predictions exported from an older run whose feature-code fingerprint differs from the current version. We can recalculate metrics from those saved predictions, but have not verified that we can recreate the original training run exactly. **This limitation does not describe the source of our headline holdout results:** the local benchmark, July–December holdout evaluation and shipped model artifacts use newer local fits with the current shared feature code. Prediction reproduction checks passed for those saved models; these checks verify their predictions, not an exact rerun of training.
 
 The frozen-checkpoint holdout evaluation is complete. Further model or policy tuning requires new independent validation; this same period can no longer serve as an untouched test. The [visual results overview](results/RESULTS_SUMMARY.md) preserves detailed tables, artifact links and the completed local benchmark snapshot.
 
