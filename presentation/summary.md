@@ -1,60 +1,21 @@
-# Executive summary
+﻿# SafeFlow — Executive summary
 
-## Purpose and decision context
+**Freeway congestion can be anticipated, but the current models produce too many false warnings to meet our proposed operating targets.** Boosted trees and Transformer are promising candidates for further development; neither is designated as the final model.
 
-SafeFlow studies whether freeway measurements can provide useful advance warning of congestion. The intended users are transportation agencies and traffic management center operators who need to prioritize corridor monitoring without being overwhelmed by false warnings. We evaluate prediction and warning burden; we have not demonstrated that acting on these warnings reduces congestion or travel times.
+SafeFlow explores whether traffic measurements can help transportation agencies and traffic management centers identify emerging congestion early enough to prioritize monitoring. Every five minutes, it predicts whether a station's speed will fall below 40 mph at any reading in the next 30 minutes. Success requires useful advance notice without overwhelming operators. We have not tested whether acting on these warnings improves traffic flow or travel times.
 
-For each station every five minutes, the target is whether measured speed will be **strictly below 40 mph at any of the next six readings**, covering the next 30 minutes. A warning is counted as early when it precedes a congestion onset by 15-30 minutes.
+The study compares Random Forest, boosted trees and Transformer using measurements from 46 D12 I-5 mainline stations. All use 29 shared features describing local traffic, neighboring detectors and typical conditions; Transformer also processes historical sequences. Models were fitted using training target windows ending before March 25, 2025. April–June data set the warning thresholds, which were then frozen for a July–December 2025 holdout containing **3,497 congestion onsets across 125 eligible days**. Models were not refitted through June.
 
-## Data and evaluation
+A **warning policy** converts a predicted probability into an alert using a model-specific threshold. A **warning budget** is a target for acceptable false-warning burden, not a financial budget or a guaranteed future limit. Our primary policy selected thresholds to maximize early detection while keeping calibration false-warning duration within **four hours/day, summed across all stations**. For example, simultaneous 30-minute false warnings at two stations contribute one hour. This illustrative target still requires validation with intended users.
 
-The current study uses D12 I-5 measurements from 46 mainline stations. Features describe current conditions, recent changes, neighboring detectors, ramp flows and typical traffic patterns. All three models use 29 logical features; the Transformer additionally consumes historical sequences.
+Under this frozen policy, Transformer warned of **56.7%** of holdout onsets 15–30 minutes early, compared with **54.3%** for boosted trees and **43.9%** for Random Forest. However, false-warning duration reached **4.97, 4.87 and 4.81 hours/day**, respectively: **all three exceeded the target**. A separate policy targeting at most 20 false-warning episodes/day also exceeded its target for every model. An episode is one uninterrupted sequence of false warnings at a station.
 
-The frozen-checkpoint test uses training target windows ending before March 25, 2025, April-June for threshold calibration, and July-December for holdout evaluation. The holdout contains 966,000 rows and 3,497 onsets across 125 eligible days. These checkpoints were not refitted through June. The holdout has now been used; subsequent improvements need new independent validation.
+![Holdout warning burden and early detection by recurrence group under the frozen duration policy.](../results/final/figures/holdout_errors_and_budget.png)
 
-The feature-engineering story includes replacing redundant raw quantities with anomalies, neighboring speed differences and cyclic time encoding; dropping duplicate neighboring occupancy from the core; and later enriching the shared set with raw measurements and recent history. See [the documented decisions](../results/final/development/feature_engineering.md); the holdout was not used for feature selection.
+*Frozen-policy holdout results: all models exceed the four-hour target, and early detection is substantially weaker for unusual congestion. Daily warning duration adds contributions across stations.*
 
-## What policy and budget mean
+Transformer's early-detection advantage over boosted trees was **2.34 percentage points** (paired weekly 95% interval: **1.19–3.49**), at slightly higher false-warning duration. These are not exactly matched-cost results. Boosted trees ranked future congestion slightly better and were substantially faster to fit in the local CPU benchmark. The evidence supports a tradeoff between the leading candidates rather than a single overall winner.
 
-A **warning policy** is the rule that turns a predicted probability into an alert: issue a warning when the probability is at least a model-specific threshold. The threshold is chosen on calibration data and then frozen. This is an alerting rule, not a policy for controlling traffic.
+The largest weakness is unusual congestion: among 634 onsets classified as non-recurrent from training-derived traffic patterns, early detection was only **9.1% for Transformer and 6.5% for boosted trees**. This classification describes unusual timing, not a confirmed incident cause. Results are limited to this corridor, and robustness to real detector outages remains unproven.
 
-A **warning budget** is a target for acceptable false-warning burden, not a financial allocation or a guaranteed limit on future traffic. Our study uses two illustrative targets that require stakeholder validation:
-
-- **Duration policy:** select the threshold for greatest early detection while calibration wrong-alert duration is at most four hours/day, summed across stations.
-- **Episode policy:** select the threshold for greatest early detection while calibration false-warning episodes are at most 20/day.
-
-One uninterrupted 30-minute false warning at one station is **one episode and 0.5 wrong-alert hours**. Six separated five-minute false warnings are **six episodes and the same 0.5 hours**. Thus, episode count measures repeated interruptions, while duration measures time spent warning incorrectly. Simultaneous warnings at different stations contribute separately to duration.
-
-In the original tradeoff plots, circles represent the duration policy, squares the episode policy, and triangles the fixed 0.5 diagnostic threshold. Colors identify models. Equal calibration targets do not imply identical realized holdout burden.
-
-## Holdout results
-
-AP measures ranking on measured, currently uncongested origins with known future outcomes. It is separate from the fraction of congestion events warned early.
-
-| Model | Holdout AP | Onsets warned at least 15 min early, duration policy | Actual wrong-alert hours/day |
-| --- | --- | --- | --- |
-| Boosted trees | 0.7412 | 54.3% | 4.87 |
-| Transformer | 0.7380 | 56.7% | 4.97 |
-| Random Forest | 0.7216 | 43.9% | 4.81 |
-
-Boosted trees lead on AP and Brier score. Transformer detects more onsets early under the frozen duration policy: its advantage over boosted trees is 2.34 percentage points, with a paired weekly 95% interval of +1.19 to +3.49. Its wrong-alert duration is slightly higher; the interval for that duration difference spans zero. This is not an exactly matched-cost comparison.
-
-**None of the models met the four-hours/day duration target on holdout.** All three also exceeded the separate 20-episode/day target. No threshold was retuned to hide those breaches.
-
-The local CPU benchmark found that boosted trees trained much faster and processed the full fixture faster. Transformer had the lowest warm small-batch latency, but required about 130 minutes for fitting, prediction and saving, versus 0.81 minutes for boosted trees. Inference cost depends on batch size and preprocessing scope.
-
-## Conclusion and next steps
-
-**No single final model is designated. All three models are retained, with boosted trees and Transformer as the leading candidates.** While neither leading candidate satisfies the target warning budget on holdout, both demonstrate the predictive feasibility of the proposed target design. They do not yet establish budget-compliant operational readiness.
-
-Further improvements, additional data and retraining may help, but must be assessed on new independent validation data; retraining is not a demonstrated remedy for the budget breach. Non-recurrent congestion remains a substantial weakness. Results are limited to this D12 cohort, and missing-feature diagnostics do not establish robustness to real detector outages.
-
-The release preserves model artifacts, frozen policies, calibration and error plots, and reproduction commands. Historical six-fold results remain separately labeled provenance-backed evidence; the frozen final workflow does not reconstruct historical fits whose original feature-source snapshots are unavailable.
-
-## Evidence
-
-- [Curated holdout report](../results/final/holdout/HOLDOUT_REPORT.md)
-- [Final score tables](../results/final/holdout/holdout_metrics.csv)
-- [Recomputed metrics and generated figures](../results/final/README.md)
-- [Final results showcase](../notebooks/final_results.ipynb)
-- [All three artifact bundles](../artifacts/README.md)
+**Recommendation:** retain all three models and continue developing the two leading candidates. Agree on acceptable warning burden with operators, investigate missed unusual events, and assess improvements and retraining on a new independent period. Both leading models demonstrate the predictive feasibility of the target design, but neither establishes budget-compliant operational readiness. The holdout has now been used; further work must not treat it as an untouched final test.
